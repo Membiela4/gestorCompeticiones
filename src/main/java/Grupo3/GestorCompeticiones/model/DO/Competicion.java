@@ -6,7 +6,7 @@ public class Competicion {
 
 	private String nombre;
 	private String descripcion;
-	private Date fechaInicio;
+	private String fechaInicio;
 	
 	public String getNombre() {
 		return nombre;
@@ -20,14 +20,14 @@ public class Competicion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String  fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 	
-	public Competicion(String nombre, String descripcion, Date fechaInicio) {
+	public Competicion(String nombre, String descripcion, String fechaInicio) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -35,7 +35,7 @@ public class Competicion {
 	}
 	@Override
 	public String toString() {
-		return "Competicion \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
+		return "[COMPETICION] \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
 	}
 	@Override
 	public int hashCode() {

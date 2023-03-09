@@ -87,12 +87,19 @@ public class Persona {
 		return true;
 	}
 
-
+	
 	/*
 	 * toString
 	 */
 
-	
+
+	@Override
+	public String toString() {
+		return "Persona \nNombre =  " + nombre + "\nDNI = " + dni + "\nTelefono = " + telefono + "\nCorreo = " + correo;
+	}
+
+
+
 	
 	
 

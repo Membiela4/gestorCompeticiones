@@ -242,15 +242,7 @@ public class Utils {
 			
 			return result;
 	  }
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	 	  
 	  	//envia un mensaje
 		public static void mensaje(String mensaje) {
 			System.out.println(mensaje);

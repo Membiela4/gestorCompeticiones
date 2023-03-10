@@ -1,7 +1,7 @@
 package Grupo3.GestorCompeticiones.interfaces.controlador;
 
 public interface iControladorGrupo {
-	void ejecutarMenuGrupos();
+	
 
 	void controlarMenuGrupos();
 

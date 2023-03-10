@@ -2,6 +2,7 @@ package Grupo3.GestorCompeticiones.controlador;
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGimnasta;
+import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGrupo;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaPrincipal;
 import Grupo3.GestorCompeticiones.utils.Utils;
@@ -11,7 +12,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	private iVistaPrincipal vistaP;
 	private iControladorCompeticion controlaComp;
 	private iControladorGimnasta controlaGim;
-	
+	private iControladorGrupo controlaGrup;
 	
 	/**
 	 * Controla la ejecucion del programa
@@ -29,7 +30,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 		boolean valid = false;
 		do {
 			vistaP.mostrarMenuPrincipal();
-			int option = Utils.leeEntero("Introduce la opcion deseada; ");
+			int option = Utils.leeEntero("Introduce la opcion deseada: ");
 			switch (option) {
 			case 0:
 				valid = true;
@@ -39,7 +40,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 				controlaComp.ejecutarMenuCompeticion();
 				break;
 			case 2:
-				controlaGim.ejecutarMenuFederacion();
+				ejecutarMenuFederacion();
 				break;
 			default:
 				Utils.mensaje("Opcion incorrecta.");
@@ -48,6 +49,37 @@ public class ControladorPrincipal implements iControladorPrincipal{
 		} while (!valid);
 		
 	}
+
+	/**
+	 * Controlador del menu federacion
+	 */
+	public void ejecutarMenuFederacion() {
+		boolean valid = true;
+		do {
+			vistaP.mostrarMostrarFederacion();
+			int option = Utils.leeEntero("Introduce la opcion deseada: ");
+			switch (option) {
+			case 0:
+				valid = true;
+				
+				break;
+			case 1:
+				controlaGim.controlarMenuGimnasta();
+				break;
+			case 2:
+				controlaGrup.controlarMenuGrupos();
+				break;
+
+			default:
+				Utils.mensaje("Opcion incorrecta.");
+				break;
+			}
+		}while(!valid);
+		
+	}
+
+
+	
 
 	
 	

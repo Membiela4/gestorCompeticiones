@@ -17,7 +17,7 @@ public class Gimnasta extends Persona {
 	
 	public Gimnasta() {
 		super("","","","");
-//		this.Categoria=null;
+		this.categoria=null;
 		this.club=null;
 	}
 
@@ -82,7 +82,7 @@ public class Gimnasta extends Persona {
 
 	@Override
 	public String toString() {
-		return "GIMNASTA \nDNI: " + dni + "\nCategoria=" + categoria + "\nClub=" + club+"\n";
+		return "[GIMNASTA] \nDNI: " + dni + "\nCategoria = " + categoria + "\nClub = " + club+"\n";
 	}
 	
 	

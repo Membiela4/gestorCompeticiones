@@ -35,7 +35,7 @@ public class Competicion {
 	}
 	@Override
 	public String toString() {
-		return "Competicion \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
+		return "[COMPETICION] \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
 	}
 	@Override
 	public int hashCode() {

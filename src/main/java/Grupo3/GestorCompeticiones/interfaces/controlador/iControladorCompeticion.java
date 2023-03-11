@@ -3,17 +3,14 @@ package Grupo3.GestorCompeticiones.interfaces.controlador;
 public interface iControladorCompeticion {
 	void ejecutarMenuCompeticion();
 
-	void controlarMenuCompeticion();
+	void controlarMenuCompeticion(int opcion);
 
-	void mostrarMenuCompeticion();
 
 	void crearCompeticion();
 
-	void editarCompèticion();
+	void editarCompeticion();
 
 	void buscarCompeticion();
-
-	void insertarPrueba();
 
 	void ejecutarMenuInsertarPrueba();
 	

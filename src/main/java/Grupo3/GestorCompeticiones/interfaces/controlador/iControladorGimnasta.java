@@ -1,23 +1,23 @@
 package Grupo3.GestorCompeticiones.interfaces.controlador;
 
 public interface iControladorGimnasta {
-	void ejecutarMenuFederacion();
+	
 
-	void controlarMenuFederacion();
+	void controlarMenuGimnasta();
+	
+	
 
-	void ejecutarAñadirGimnasta();
-
-	void añadirGimnasta();
+	void insertarGimnasta();
 
 	void buscarGimnasta();
 
 	void editarGimnasta();
 
-	void deleteGimnasta();
+	void eliminarGimnasta();
 
 	void mostrarGimnastas();
 
-	void volverMenuFederacion();
+	
 
 	void ejecutarMenugrupos();
 

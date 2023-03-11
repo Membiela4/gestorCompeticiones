@@ -26,6 +26,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 			controlarMenuCompeticion(opcion);	
 		}while(opcion!=3);
 	}
+	
 	public void controlarMenuCompeticion(int opcion) {
 		switch(opcion) {
 		    case 0:

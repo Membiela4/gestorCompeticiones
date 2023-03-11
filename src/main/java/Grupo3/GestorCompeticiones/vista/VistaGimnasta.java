@@ -19,4 +19,10 @@ public class VistaGimnasta implements iVistaGimnasta {
 		
 	}
 
+	@Override
+	public void mostrarMenuGimnasta() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

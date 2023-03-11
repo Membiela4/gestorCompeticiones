@@ -100,7 +100,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de controlar la eliminacion de gimnasta.
 	 */
 	public void eliminarGimnasta() {
-		if(repoGim.eliminsGinmasta(repoGim.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Gimnasta a eliminar ")))==true) {
+		if(repoGim.eliminaGinmasta(repoGim.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Gimnasta a eliminar ")))==true) {
 			Utils.mensaje("Has eliminado el Gimnasta correctamente");
 		}
 		

@@ -6,7 +6,7 @@ public class Competicion {
 
 	private String nombre;
 	private String descripcion;
-	private String fechaInicio;
+	private Date fechaInicio;
 	
 	public String getNombre() {
 		return nombre;
@@ -20,14 +20,14 @@ public class Competicion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getFechaInicio() {
+	public Date getFechaInicio() {
 		return fechaInicio;
 	}
-	public void setFechaInicio(String  fechaInicio) {
+	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 	
-	public Competicion(String nombre, String descripcion, String fechaInicio) {
+	public Competicion(String nombre, String descripcion, Date fechaInicio) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;

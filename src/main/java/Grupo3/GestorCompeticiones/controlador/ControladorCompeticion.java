@@ -11,8 +11,9 @@ import Grupo3.GestorCompeticiones.model.DO.Competicion;
 import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class ControladorCompeticion implements iControladorCompeticion {
+	
 	private RepoCompeticion RepoCompeticion;
-     private iRepoCompeticion repoComp;
+    private iRepoCompeticion repoComp;
 	private iControladorPruebas controlarPruebas;
     private iControladorPrincipal controlarPrincipal;
     private iVistaCompeticion vistaComp;
@@ -56,31 +57,31 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	}
 	public void crearCompeticion() {
 
-		String nombre=Utils.leeString("Introduce el nombre de la competición");
-		String descripcion=Utils.leeString("Introduce una descripción");
-		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competición");
+		String nombre=Utils.leeString("Introduce el nombre de la competiciï¿½n");
+		String descripcion=Utils.leeString("Introduce una descripciï¿½n");
+		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competiciï¿½n");
 		
 		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio);
 		repoComp.insertaCompeticion(competicion);
-		Utils.mensaje("Competición creada correctamente");
+		Utils.mensaje("Competiciï¿½n creada correctamente");
 	}
 	
 	
 	public void editarCompeticion( ) {
 		
 		Competicion competicion = repoComp.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion que quiera editar"));
-	    String nuevoNombre=Utils.leeString("Introduce el nombre de la competición");
-		String nuevaDescripcion=Utils.leeString("Introduce una descripción");
-		Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competición");
+	    String nuevoNombre=Utils.leeString("Introduce el nombre de la competiciï¿½n");
+		String nuevaDescripcion=Utils.leeString("Introduce una descripciï¿½n");
+		Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competiciï¿½n");
 	    
 	    if (competicion != null) {
 	        competicion.setNombre( nuevoNombre);
 	        competicion.setDescripcion(nuevaDescripcion);
 	        competicion.setFechaInicio(nuevaFechaInicio);
 	        
-	        Utils.mensaje("La competición  ha sido actualizada ");
+	        Utils.mensaje("La competiciï¿½n  ha sido actualizada ");
 	    }else {
-	    	 Utils.mensaje("No se ha encontrado ninguna competición con el nombre introducido");
+	    	 Utils.mensaje("No se ha encontrado ninguna competiciï¿½n con el nombre introducido");
 	    }
 	}
 	
@@ -100,7 +101,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 			Utils.mensaje("La competicion ha sido eliminada");
 		}
 		else {
-			Utils.mensaje("No se ha podido eliminar la competición");
+			Utils.mensaje("No se ha podido eliminar la competiciï¿½n");
 		}
 		
 	}
@@ -108,5 +109,9 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		String muestraComp=RepoCompeticion.muestraCompeticion();
 		 repoComp.muestraCompeticion();
 	}
+
+	
+		
+	
 	
 }

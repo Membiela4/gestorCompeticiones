@@ -56,14 +56,6 @@ public class Grupo {
 		return "Grupo \nNombre: " + nombre + "\nClub: " + club;
 	}
 	
-	
-	public void mostrarGimnastas() {
-		for (Gimnasta gimnasta : gimnastas) {
-			System.out.println(gimnasta);
-		}
-	}
-	
-	
 		
 	
 }

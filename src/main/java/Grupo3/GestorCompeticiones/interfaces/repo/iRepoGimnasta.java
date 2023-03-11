@@ -4,13 +4,15 @@ import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
 
 public interface iRepoGimnasta {
 	
-	String muestraGimnastas();
+	public Gimnasta crearGimnasta();
+	
+	void  muestraGimnastas();
 	
 	boolean insertaGimnasta(Gimnasta g);
 	
 	Gimnasta buscaGimnasta(String dni);
 	
-	boolean eliminsGinmasta(Gimnasta g);
+	boolean eliminaGinmasta(Gimnasta g);
 	
 	
 }

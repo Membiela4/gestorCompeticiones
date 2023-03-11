@@ -12,7 +12,6 @@ import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class ControladorCompeticion implements iControladorCompeticion {
 	
-	private RepoCompeticion RepoCompeticion;
     private iRepoCompeticion repoComp;
 	private iControladorPruebas controlarPruebas;
     private iControladorPrincipal controlarPrincipal;
@@ -87,7 +86,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	}
 	
 	public void buscarCompeticion() {
-		Utils.imprimeObjeto(repoComp.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion que quieras editar")));
+		Utils.imprimeObjeto(repoComp.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion ")));
 	}
 	public void ejecutarMenuInsertarPrueba() {
 		controlarPruebas.controlarMenuInsertarPrueba();
@@ -107,12 +106,9 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		
 	}
 	public void muestraCompeticion() {
-		String muestraComp=RepoCompeticion.muestraCompeticion();
-		 repoComp.muestraCompeticion();
+		String muestraComp=repoComp.muestraCompeticion();
+		Utils.mensaje(muestraComp);
 	}
 
-	
-		
-	
 	
 }

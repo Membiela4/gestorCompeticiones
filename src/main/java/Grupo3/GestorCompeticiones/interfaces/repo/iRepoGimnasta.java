@@ -6,7 +6,7 @@ public interface iRepoGimnasta {
 	
 	public Gimnasta crearGimnasta();
 	
-	String  muestraGimnastas();
+	public void  muestraGimnastas();
 	
 	boolean insertaGimnasta(Gimnasta g);
 	

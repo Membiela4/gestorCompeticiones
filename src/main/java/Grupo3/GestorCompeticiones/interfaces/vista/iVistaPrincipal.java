@@ -4,9 +4,5 @@ public interface iVistaPrincipal {
 	
 	void mostrarMenuPrincipal();
 
-	void mostrarMostrarCompeticion();
-
-	void mostrarMostrarFederacion();
 	
-
 }

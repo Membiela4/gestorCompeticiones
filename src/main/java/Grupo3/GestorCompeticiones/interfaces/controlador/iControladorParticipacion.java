@@ -4,7 +4,7 @@ public interface iControladorParticipacion {
 	
 	void ejecutarMenuInsertarParticipaciones();
 
-	void controlarMenuInsertarParticipaciones();
+	void controlarMenuInsertarParticipaciones(int opcion);
 
 	void mostrarMenuInsertarParticipaciones();
 

@@ -21,5 +21,5 @@ public interface iControladorGimnasta {
 
 	void ejecutarMenugrupos();
 
-	void volverMenuPrincipal();
+	void volverMenuPrincipal(); 
 }

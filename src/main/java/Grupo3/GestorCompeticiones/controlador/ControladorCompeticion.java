@@ -23,7 +23,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 			vistaComp.mostrarMenuCompeticion();
 			opcion=Utils.leeEntero("Elige una opcion: ");
 			controlarMenuCompeticion(opcion);	
-		}while(opcion!=3);
+		}while(opcion!=6);
 	}
 	
 	public void controlarMenuCompeticion(int opcion) {
@@ -89,7 +89,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		Utils.imprimeObjeto(repoComp.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion ")));
 	}
 	public void ejecutarMenuInsertarPrueba() {
-		controlarPruebas.controlarMenuInsertarPrueba();
+		controlarPruebas.controlarMenuInsertarPrueba(0);
 		}
 	
 	public void volverMenuPrincipal() {

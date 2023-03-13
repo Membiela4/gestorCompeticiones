@@ -14,4 +14,5 @@ public interface iRepoPruebas {
 	Prueba buscaPrueba(TipoPrueba prueba, Categoria categoria, Aparato aparato);
 	
 	boolean eliminaPrueba(Prueba p);
+
 }

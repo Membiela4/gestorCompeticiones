@@ -3,17 +3,17 @@ package Grupo3.GestorCompeticiones.interfaces.controlador;
 public interface iControladorPruebas {
 	void ejecutarMenuInsertarPrueba();
 
-	void controlarMenuInsertarPrueba();
+	void controlarMenuInsertarPrueba(int opcion);
 
-	void mostrarMenuInsertarPrueba();
 
-	void añadirPrueba();
+	void insertarPrueba();
 
 	void editarPrueba();
 
 	void buscarPrueba();
 
 	void ejecutarMenuInsertarParticipaciones();
+	
 
 	void volverMenuCompeticion();
 

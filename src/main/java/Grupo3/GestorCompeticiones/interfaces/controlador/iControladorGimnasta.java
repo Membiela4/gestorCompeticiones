@@ -5,8 +5,6 @@ public interface iControladorGimnasta {
 
 	void controlarMenuGimnasta();
 	
-	
-
 	void insertarGimnasta();
 
 	void buscarGimnasta();
@@ -16,8 +14,6 @@ public interface iControladorGimnasta {
 	void eliminarGimnasta();
 
 //	void mostrarGimnastas();
-
-	
 
 	void ejecutarMenugrupos();
 

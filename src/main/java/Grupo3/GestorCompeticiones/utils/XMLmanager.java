@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlType
 public class XMLmanager {
+	
 	public static <T, JAXBContext> boolean writeXML(T c, String fichero) {
 		boolean result = false;
 		JAXBContext context;

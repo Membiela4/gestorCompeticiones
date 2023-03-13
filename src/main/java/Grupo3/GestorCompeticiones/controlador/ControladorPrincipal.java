@@ -10,10 +10,13 @@ import Grupo3.GestorCompeticiones.vista.VistaPrincipal;
 
 public class ControladorPrincipal implements iControladorPrincipal{
 
-	private VistaPrincipal vistaP;
-	private ControladorCompeticion controlaComp;
-	private ControladorGimnasta controlaGim;
-	private iControladorGrupo controlaGrup;
+
+	iControladorGrupo controlaGrup;
+
+	ControladorCompeticion controladorCompeticion = new ControladorCompeticion();
+	ControladorGimnasta controladorGimnasta = new ControladorGimnasta();
+	VistaPrincipal vistaPrincipal = new VistaPrincipal();
+	
 	
 	/**
 	 * Controla la ejecucion del programa
@@ -30,7 +33,8 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	public void controlarMenuPrincipal() {
 		boolean valid = false;
 		do {
-			vistaP.mostrarMenuPrincipal();
+			
+			vistaPrincipal.mostrarMenuPrincipal();
 			int option = Utils.leeEntero("Introduce la opcion deseada: ");
 			switch (option) {
 			case 0:
@@ -38,7 +42,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 				Utils.mensaje("Has cerrado el programa.");
 				break;
 			case 1:
-				controlaComp.ejecutarMenuCompeticion();
+				controladorCompeticion.ejecutarMenuCompeticion();
 				break;
 			case 2:
 				ejecutarMenuFederacion();
@@ -57,15 +61,15 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	public void ejecutarMenuFederacion() {
 		boolean valid = true;
 		do {
-			vistaP.mostrarMenuFederacion();
+			vistaPrincipal.mostrarMenuFederacion();
 			int option = Utils.leeEntero("Introduce la opcion deseada: ");
 			switch (option) {
 			case 0:
-				valid = false;
+				controlarMenuPrincipal();
 				
 				break;
 			case 1:
-				controlaGim.controlarMenuGimnasta();
+				controladorGimnasta.controlarMenuGimnasta();
 				break;
 			case 2:
 				controlaGrup.controlarMenuGrupos();

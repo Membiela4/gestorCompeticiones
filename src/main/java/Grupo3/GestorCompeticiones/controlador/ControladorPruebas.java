@@ -16,8 +16,8 @@ public class ControladorPruebas implements iControladorPruebas {
 	private VistaPruebas vistapruebas;
 	private iRepoPruebas repoPruebas;
 	private iControladorParticipacion controlarParticipacion;
-	private iControladorPrincipal controlarPrincipal;
-	private iControladorCompeticion controlarComp;
+	private ControladorPrincipal controlarPrincipal;
+	private ControladorCompeticion controlarComp;
 
 	
 	public void ejecutarMenuInsertarPrueba() {

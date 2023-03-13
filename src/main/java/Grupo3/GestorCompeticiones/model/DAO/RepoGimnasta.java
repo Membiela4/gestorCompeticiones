@@ -10,7 +10,7 @@ import Grupo3.GestorCompeticiones.utils.XMLmanager;
 
 public class RepoGimnasta implements iRepoGimnasta {
 
-	ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
+	ControladorPrincipal controladorPrincipal;
 	
 	public Gimnasta crearGimnasta() {
 		
@@ -24,9 +24,9 @@ public class RepoGimnasta implements iRepoGimnasta {
 		g.setClub(Utils.leeString("Introduce club del participante"));
 		g.setCategoria(Utils.validaCategoria("Introduce la categoria del participante"));
 		
-	
-		controladorPrincipal.ejecutarMenuFederacion();
 		return g;
+		
+		
 	}
 
 	public void muestraGimnastas() {
@@ -44,6 +44,9 @@ public class RepoGimnasta implements iRepoGimnasta {
 		
 		if(XMLmanager.writeXML(g, "fichero.xml")) {
 			result=true;
+			Utils.mensaje("Gimasta introducido correctamente");
+		}else {
+			Utils.mensaje("Error al insertar gimnasta");
 		}
 			
 

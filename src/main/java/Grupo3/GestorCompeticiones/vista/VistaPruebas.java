@@ -8,7 +8,7 @@ public class VistaPruebas implements iVistaPruebas {
 
 	@Override
 	public void mostrarMenuInsertarPrueba() {
-		Utils.mensaje("MENU DE PRUEBAS");
+		Utils.mensaje("\nMENU DE PRUEBAS");
 		Utils.mensaje("");
 		Utils.mensaje("[1]INSERTAR PRUEBA");
 		Utils.mensaje("[2]EDITAR PRUEBA");

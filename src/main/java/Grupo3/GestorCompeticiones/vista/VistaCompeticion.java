@@ -8,7 +8,7 @@ public class VistaCompeticion implements iVistaCompeticion {
 	
 	@Override
 	public void mostrarMenuCompeticion() {
-		Utils.mensaje("MENU DE COMPETICIONES");
+		Utils.mensaje("\nMENU DE COMPETICIONES");
 		Utils.mensaje("[1]CREAR COMPETICION");
 		Utils.mensaje("[2]EDITAR COMPETICION");
 		Utils.mensaje("[3]BUSCA COMPETICION");

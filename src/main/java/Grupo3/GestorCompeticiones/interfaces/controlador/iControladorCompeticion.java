@@ -1,5 +1,7 @@
 package Grupo3.GestorCompeticiones.interfaces.controlador;
 
+import Grupo3.GestorCompeticiones.model.DO.Competicion;
+
 public interface iControladorCompeticion {
 	void ejecutarMenuCompeticion();
 
@@ -8,7 +10,7 @@ public interface iControladorCompeticion {
 
 	void crearCompeticion();
 
-	void editarCompeticion();
+//	void editarCompeticion();
 
 	void buscarCompeticion();
 

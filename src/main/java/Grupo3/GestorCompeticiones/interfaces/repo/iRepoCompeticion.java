@@ -4,7 +4,7 @@ import Grupo3.GestorCompeticiones.model.DO.Competicion;
 
 public interface iRepoCompeticion {
 	
-	String muestraCompeticion();
+//	void muestraCompeticion();
 	
 	boolean insertaCompeticion(Competicion c);
 	

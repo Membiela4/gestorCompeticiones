@@ -38,16 +38,16 @@ public class ControladorGimnasta implements iControladorGimnasta{
 			case 3 :
 				  editarGimnasta();
 				  break;
-			case 5 : 
+			case 4 : 
 				 eliminarGimnasta();
 				 break;
-			case 6 :
-				 mostrarGimnastas();
+			case 5 :
+//				 mostrarGimnastas();
 				 break;
-			case 7 : 
+			case 6 : 
 				ejecutarMenugrupos();
 				 break;
-			case 8 :
+			case 7 :
 				 volverMenuPrincipal();
 				 break;
 			default:
@@ -106,13 +106,15 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 	}
 	/**
+	 *Comento el metodo para que no de fallos mientras hago pruebas
 	 * Subcontrolador que se encarga de moatrar todo los gimnastas federados.
 	 */
-	public void mostrarGimnastas() {
-		String allGim = repoGim.muestraGimnastas();
-		Utils.mensaje(allGim);
-		
-	}
+	
+//	public void mostrarGimnastas() {
+//		String allGim = repoGim.muestraGimnastas();
+//		Utils.mensaje(allGim);
+//		
+//	}
 	/**
 	 * Subcontrolador que te envia al menu de grupos
 	 */

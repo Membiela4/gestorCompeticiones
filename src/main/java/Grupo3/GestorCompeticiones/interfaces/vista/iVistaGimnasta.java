@@ -4,8 +4,5 @@ public interface iVistaGimnasta {
 	
 	void mostrarMenuGimnasta();
 	
-	void mostrarGimnastas();
-
-	void volverMostrarPrincipal();
 	
 }

@@ -1,11 +1,20 @@
 package Grupo3.GestorCompeticiones.utils;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import Grupo3.GestorCompeticiones.model.DO.Aparato;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
@@ -255,5 +264,43 @@ public class Utils {
 		//metodo que imprime objeto
 		public static void imprimeObjeto (Object o) {
 			System.out.println(o);
+		}
+		
+		public static NodeList buscarObjetos(String tipoObjeto, String nombreArchivo) {
+			try {
+				File inputfile = new File(nombreArchivo);
+				
+				
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(inputfile);
+				
+				
+				doc.getDocumentElement().normalize();
+				
+				NodeList nList = doc.getElementsByTagName(tipoObjeto);
+				return nList;
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		
+		public static void buscarMostrarObjetos() {
+			String tipoObjeto = leeString("Introduce el tipo de objeto que quieres buscar");
+			NodeList objetos = buscarObjetos(tipoObjeto, "fichero.xml");
+			
+			for(int i=0; i< objetos.getLength();i++) {
+				Node objeto = objetos.item(i);
+				if(objeto.getNodeType() == Node.ELEMENT_NODE) {
+					Element elementoObjeto = (Element) objeto;
+					String id = elementoObjeto.getAttribute("dni");
+					String nombre = elementoObjeto.getElementsByTagName("nombre").item(0).getTextContent();
+					Utils.mensaje("El objeto tiene el nombre "+ nombre);
+					
+				}
+			}
 		}
 }

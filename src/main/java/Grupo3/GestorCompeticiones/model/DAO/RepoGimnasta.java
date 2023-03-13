@@ -2,13 +2,15 @@ package Grupo3.GestorCompeticiones.model.DAO;
 
 import java.util.ArrayList;
 
+import Grupo3.GestorCompeticiones.controlador.ControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoGimnasta;
 import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
 import Grupo3.GestorCompeticiones.utils.Utils;
-import Grupo3.GestorCompeticiones.vista.*;
+import Grupo3.GestorCompeticiones.utils.XMLmanager;
 
 public class RepoGimnasta implements iRepoGimnasta {
-	VistaGimnasta vistaGimnasta = new VistaGimnasta();
+
+	ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
 	
 	public Gimnasta crearGimnasta() {
 		
@@ -23,30 +25,39 @@ public class RepoGimnasta implements iRepoGimnasta {
 		g.setCategoria(Utils.validaCategoria("Introduce la categoria del participante"));
 		
 	
-		vistaGimnasta.volverMostrarFederacion();
+		controladorPrincipal.ejecutarMenuFederacion();
 		return g;
 	}
 
-	public void  muestraGimnastas() {
+	public void muestraGimnastas() {
 		
-		
+		Utils.buscarMostrarObjetos();
 	
-		vistaGimnasta.volverMostrarFederacion();
+		 
+		
+		
 		
 	}
 
 	public boolean insertaGimnasta(Gimnasta g) {
 		boolean result=false;
+		
+		if(XMLmanager.writeXML(g, "fichero.xml")) {
+			result=true;
+		}
 			
-		
-		
-		return result;
+
+			return result;
+
+
 	}
 
 	public Gimnasta buscaGimnasta(String dni) {
 		
+		XMLmanager.readXML(dni, "fichero.xml");
 		
 		return null;
+		
 	}
 
 	public boolean eliminaGinmasta(Gimnasta g) {

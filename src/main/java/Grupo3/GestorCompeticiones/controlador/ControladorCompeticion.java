@@ -44,8 +44,8 @@ public class ControladorCompeticion implements iControladorCompeticion {
 					eliminaCompeticion();
 					break;
 			case 5:
-					muestraCompeticion();
-					break;
+//					muestraCompeticion();
+//					break;
 			case 6:
 					ejecutarMenuInsertarPrueba();
 					break;
@@ -105,10 +105,10 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		}
 		
 	}
-	public void muestraCompeticion() {
-		String muestraComp=repoComp.muestraCompeticion();
-		Utils.mensaje(muestraComp);
-	}
+//	public void muestraCompeticion() {
+//		String muestraComp=repoComp.muestraCompeticion();
+//		Utils.mensaje(muestraComp);
+//	}
 
 	
 }

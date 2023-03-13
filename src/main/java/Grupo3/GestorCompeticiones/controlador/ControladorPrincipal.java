@@ -6,12 +6,13 @@ import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGrupo;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaPrincipal;
 import Grupo3.GestorCompeticiones.utils.Utils;
+import Grupo3.GestorCompeticiones.vista.VistaPrincipal;
 
 public class ControladorPrincipal implements iControladorPrincipal{
 
-	private iVistaPrincipal vistaP;
-	private iControladorCompeticion controlaComp;
-	private iControladorGimnasta controlaGim;
+	private VistaPrincipal vistaP;
+	private ControladorCompeticion controlaComp;
+	private ControladorGimnasta controlaGim;
 	private iControladorGrupo controlaGrup;
 	
 	/**
@@ -56,11 +57,11 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	public void ejecutarMenuFederacion() {
 		boolean valid = true;
 		do {
-			vistaP.mostrarMostrarFederacion();
+			vistaP.mostrarMenuFederacion();
 			int option = Utils.leeEntero("Introduce la opcion deseada: ");
 			switch (option) {
 			case 0:
-				valid = true;
+				valid = false;
 				
 				break;
 			case 1:

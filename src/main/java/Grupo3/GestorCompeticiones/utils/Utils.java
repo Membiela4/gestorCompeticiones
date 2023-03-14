@@ -18,6 +18,7 @@ import org.w3c.dom.Element;
 
 import Grupo3.GestorCompeticiones.model.DO.Aparato;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
+import Grupo3.GestorCompeticiones.model.DO.Competicion;
 import Grupo3.GestorCompeticiones.model.DO.TipoPrueba;
 
 public class Utils {
@@ -131,7 +132,7 @@ public class Utils {
 		  Scanner sc = new Scanner (System.in);
 		  String result= null;
 		  boolean valid = false;
-		  String patron = "^[6-9]\\d{9}$"; 
+		  String patron = "^[6-9]\\d{8}$"; 
 		  do {
 			 try {
 				System.out.print(mensaje);
@@ -262,11 +263,15 @@ public class Utils {
 		
 		
 		//metodo que imprime objeto
+		
+		public static void imprimeCompeticion(Competicion c) {
+			System.out.println(c);
+		}
 		public static void imprimeObjeto (Object o) {
 			System.out.println(o);
 		}
 		
-		public static NodeList buscarObjetos(String tipoObjeto, String nombreArchivo) {
+		public static<T> NodeList buscarObjetos(T tipoObjeto, String nombreArchivo) {
 			try {
 				File inputfile = new File(nombreArchivo);
 				
@@ -278,7 +283,7 @@ public class Utils {
 				
 				doc.getDocumentElement().normalize();
 				
-				NodeList nList = doc.getElementsByTagName(tipoObjeto);
+				NodeList nList = doc.getElementsByTagName((String) tipoObjeto);
 				return nList;
 				
 			}catch(Exception e) {

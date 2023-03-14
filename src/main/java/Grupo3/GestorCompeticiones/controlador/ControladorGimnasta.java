@@ -1,20 +1,25 @@
 package Grupo3.GestorCompeticiones.controlador;
 
+import java.util.ArrayList;
+
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGimnasta;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGrupo;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoGimnasta;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaGimnasta;
+import Grupo3.GestorCompeticiones.model.DAO.RepoGimnasta;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
 import Grupo3.GestorCompeticiones.utils.Utils;
+import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 
 public class ControladorGimnasta implements iControladorGimnasta{
 	
-	private iVistaGimnasta vistaGim;
-	private iRepoGimnasta repoGim;
-	private iControladorPrincipal controlaPrin;
+	private VistaGimnasta vistaGim = new VistaGimnasta();
+	private RepoGimnasta repoGimnasta = new RepoGimnasta();
+	private ControladorPrincipal controlaPrin;
 	private iControladorGrupo controlaGrup;
+	ArrayList<Gimnasta> gimnastas = new ArrayList();
 	
 	/**
 	 * Controlador del menu Gimnasta
@@ -42,7 +47,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 				 eliminarGimnasta();
 				 break;
 			case 5 :
-//				 mostrarGimnastas();
+				 mostrarGimnastas();
 				 break;
 			case 6 : 
 				ejecutarMenugrupos();
@@ -68,28 +73,36 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 		
 		Gimnasta g = new Gimnasta(nombre, dni, telefono, correo);
-		if(repoGim.insertaGimnasta(g)== true) {
-			Utils.mensaje("El Gimnasta se a insertado correctamente.");
+		if(gimnastas.add(g)) {
+			Utils.mensaje("El Gimnasta se ha insertado correctamente.");
+			
 		}
+		
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar el buscar e imprimir el gimnasta a traves del dni.
 	 */
 	public void buscarGimnasta() {
 		
-		Utils.imprimeObjeto(repoGim.buscaGimnasta(Utils.validaDNI("Introduce el DNI del gimnasta a buscar: ")));
-		
+		String dni=Utils.validaDNI("Introduce el DNI del gimnasta a buscar: ");
+	
+		for (Gimnasta g : gimnastas) {
+			if(g.getDni()==dni)
+				System.out.println(g);
+		}
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar la edicion del gimnasta.
 	 */
 	public void editarGimnasta() {
 		Gimnasta g = null;
-		g = repoGim.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Ginmasta que desea editar: "));
+		g = repoGimnasta.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Ginmasta que desea editar: "));
 		
 		String nombre = Utils.leeString("Introduce el nombre: ");
 		String tlf = Utils.validaTLF("Introduce el telefono: ");
 		String correo = Utils.leeString("Inserta el correo: ");
+		Categoria categoria = Utils.validaCategoria("Introduce categoria del gimnasta");
+		String club = Utils.leeString("Introduce club del gimnasta");
 		
 		g.setNombre(nombre);
 		g.setTelefono(tlf);
@@ -100,7 +113,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de controlar la eliminacion de gimnasta.
 	 */
 	public void eliminarGimnasta() {
-		if(repoGim.eliminaGinmasta(repoGim.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Gimnasta a eliminar ")))==true) {
+		if(repoGimnasta.eliminaGinmasta(repoGimnasta.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Gimnasta a eliminar ")))==true) {
 			Utils.mensaje("Has eliminado el Gimnasta correctamente");
 		}
 		
@@ -110,11 +123,12 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de moatrar todo los gimnastas federados.
 	 */
 	
-//	public void mostrarGimnastas() {
-//		String allGim = repoGim.muestraGimnastas();
-//		Utils.mensaje(allGim);
-//		
-//	}
+	public void mostrarGimnastas() {
+		
+		for (Gimnasta gimnasta : gimnastas) {
+			System.out.println(gimnasta);
+		}
+	}
 	/**
 	 * Subcontrolador que te envia al menu de grupos
 	 */

@@ -1,5 +1,8 @@
 package Grupo3.GestorCompeticiones.controlador;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorParticipacion;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
@@ -7,12 +10,14 @@ import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoPruebas;
 import Grupo3.GestorCompeticiones.model.DO.Aparato;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
+import Grupo3.GestorCompeticiones.model.DO.Competicion;
 import Grupo3.GestorCompeticiones.model.DO.Prueba;
 import Grupo3.GestorCompeticiones.model.DO.TipoPrueba;
 import Grupo3.GestorCompeticiones.utils.Utils;
 import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 
 public class ControladorPruebas implements iControladorPruebas {
+	List<Prueba> pruebas=new ArrayList();
 	private VistaPruebas vistapruebas;
 	private iRepoPruebas repoPruebas;
 	private iControladorParticipacion controlarParticipacion;
@@ -22,13 +27,11 @@ public class ControladorPruebas implements iControladorPruebas {
 	
 	public void ejecutarMenuInsertarPrueba() {
 		int opcion;
-		do {
-			
+		do {	
 			vistapruebas.mostrarMenuInsertarPrueba();
 			opcion=Utils.leeEntero("Elige una opcion: ");	
 			controlarMenuInsertarPrueba(opcion);
-		}while(opcion!=7);
-		
+		}while(opcion!=7);	
 	}
 
 	public void controlarMenuInsertarPrueba(int opcion) {
@@ -60,8 +63,7 @@ public class ControladorPruebas implements iControladorPruebas {
 			default:
 				 Utils.mensaje("Vuelve a introducir una opcion");
 				 break;
-		}
-		
+		}		
 	}	
 public void insertarPrueba() {
 	TipoPrueba tipo=Utils.validaTipoPrueba("Introduce el tipo de prueba");
@@ -72,13 +74,6 @@ public void insertarPrueba() {
      repoPruebas.insertaPrueba(prueba);
 	Utils.mensaje("Prueba creada correctamente");
 }
-
-	public void buscarPrueba() {
-		TipoPrueba prueba=Utils.validaTipoPrueba("Introduce el tipo de prueba");
-		Categoria categoria=Utils.validaCategoria("Introduce la categorï¿½a");
-		Aparato aparato=Utils.validaAparato("Introduce el aparato");
-	    Utils.imprimeObjeto(repoPruebas.buscaPrueba( prueba,categoria,aparato));
-	}
 
 public void editarPrueba() {
 	TipoPrueba tipo1=Utils.validaTipoPrueba("Introduce el tipo de prueba a editar");
@@ -108,8 +103,9 @@ public void editarPrueba() {
 	 
  }
  public void muestraPrueba() {
-	 String muestraPruebas=repoPruebas.muestraPrueba();
-	 Utils.mensaje(muestraPruebas);
+	 for(Prueba p : pruebas) {
+		 System.out.println(p);
+	 }
  }
  
  public void ejecutarMenuInsertarParticipaciones() {
@@ -121,7 +117,17 @@ public void volverMenuPrincipal() {
 
 public void volverMenuCompeticion() {
 	controlarComp.controlarMenuCompeticion(0);
-	
 }
-	
+
+@Override
+public void buscarPrueba() {
+	 TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba a buscar:");
+	    Categoria categoria = Utils.validaCategoria("Introduce la categoría a buscar:");
+	    Aparato aparato = Utils.validaAparato("Introduce el aparato a buscar:");
+		for (Prueba p : pruebas) {
+			if((p.getCategoria()==categoria)&&(p.getAparato()==aparato)&&(p.getTipo()==tipo))
+				Utils.imprimeObjeto(p);
+		}
+	        
+}	
 }

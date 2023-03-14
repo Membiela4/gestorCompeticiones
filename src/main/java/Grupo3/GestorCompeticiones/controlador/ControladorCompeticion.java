@@ -96,8 +96,6 @@ public class ControladorCompeticion implements iControladorCompeticion {
 				Utils.imprimeCompeticion(c);
 		}
 	}
-
-	
 	public void ejecutarMenuInsertarPrueba() {
 		controladorPruebas.controlarMenuInsertarPrueba(0);
 		}

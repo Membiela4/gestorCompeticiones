@@ -10,6 +10,7 @@ import Grupo3.GestorCompeticiones.interfaces.vista.iVistaGimnasta;
 import Grupo3.GestorCompeticiones.model.DAO.RepoGimnasta;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
+import Grupo3.GestorCompeticiones.utils.SerializadorManager;
 import Grupo3.GestorCompeticiones.utils.Utils;
 import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 
@@ -19,7 +20,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	private RepoGimnasta repoGimnasta = new RepoGimnasta();
 	private iControladorPrincipal controlaPrin= new ControladorPrincipal();
 	private iControladorGrupo controlaGrup;
-	
+
 	
 	/**
 	 * Controlador del menu Gimnasta
@@ -73,9 +74,10 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 		
 		Gimnasta g = new Gimnasta(nombre, dni, telefono, correo);
-		if(gimnastas.add(g)) {
-			Utils.mensaje("El Gimnasta se ha insertado correctamente.");
-			
+		
+		if(repoGimnasta.insertaGimnasta(g)) {
+			Utils.mensaje("Gimasta introducido correctamente");
+			repoGimnasta.GimnastaXML();
 		}
 		
 	}
@@ -86,10 +88,6 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 		String dni=Utils.validaDNI("Introduce el DNI del gimnasta a buscar: ");
 	
-		for (Gimnasta g : gimnastas) {
-			if(g.getDni()==dni)
-				System.out.println(g);
-		}
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar la edicion del gimnasta.
@@ -125,9 +123,10 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	public void mostrarGimnastas() {
 		
-		for (Gimnasta gimnasta : gimnastas) {
-			System.out.println(gimnasta);
-		}
+		
+		String allGim = repoGimnasta.muestraGimnastas();
+		Utils.imprimeObjeto(allGim);
+		
 	}
 	/**
 	 * Subcontrolador que te envia al menu de grupos

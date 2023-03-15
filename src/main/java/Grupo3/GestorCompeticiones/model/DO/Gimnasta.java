@@ -82,7 +82,7 @@ public class Gimnasta extends Persona {
 
 	@Override
 	public String toString() {
-		return "[GIMNASTA] \nDNI: " + dni + "\nCategoria = " + categoria + "\nClub = " + club+"\n";
+		return "[GIMNASTA]"+"\nNombre: " +super.toString() + "\nCategoria = " + categoria + "\nClub = " + club+"\n";
 	}
 	
 	

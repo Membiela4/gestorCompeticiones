@@ -17,9 +17,9 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	private VistaGimnasta vistaGim = new VistaGimnasta();
 	private RepoGimnasta repoGimnasta = new RepoGimnasta();
-	private ControladorPrincipal controlaPrin;
+	private iControladorPrincipal controlaPrin= new ControladorPrincipal();
 	private iControladorGrupo controlaGrup;
-	ArrayList<Gimnasta> gimnastas = new ArrayList();
+	
 	
 	/**
 	 * Controlador del menu Gimnasta

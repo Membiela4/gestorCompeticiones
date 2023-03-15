@@ -14,12 +14,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public class XMLmanager {
 	
-	public static <T, JAXBContext> boolean writeXML(T c, String fichero) {
+	public static <T> boolean writeXML(T c, String fichero) {
 		boolean result = false;
 		JAXBContext context;
 		try {
-			context = (JAXBContext) context(c.getClass());
-			Marshaller m = ((javax.xml.bind.JAXBContext) context).createMarshaller();
+			context =  JAXBContext.newInstance(c.getClass());
+			Marshaller m =  context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 			m.marshal(c, new File(fichero));
@@ -29,17 +29,13 @@ public class XMLmanager {
 		} 
 		return result;
 }
-private static Class<? extends Object> context(Class<? extends Object> class1) {
-		
-		return class1;
-	}
 public static <T> T readXML(T c,String fichero) {
 	T result = c;
 	JAXBContext context;
 	try {
 		context = JAXBContext.newInstance(result.getClass());
 		Unmarshaller m = context.createUnmarshaller();
-		result=(T)m.unmarshal(new File(fichero));
+		result=(T)m.unmarshal(new File( fichero));
 	} catch (JAXBException e) {
 		e.printStackTrace();
 	}

@@ -4,9 +4,8 @@ import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
 
 public interface iRepoGimnasta {
 	
-	public Gimnasta crearGimnasta();
 	
-	public void  muestraGimnastas();
+	public String muestraGimnastas();
 	
 	boolean insertaGimnasta(Gimnasta g);
 	

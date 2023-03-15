@@ -6,7 +6,6 @@ import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class VistaPruebas implements iVistaPruebas {
 
-	@Override
 	public void mostrarMenuInsertarPrueba() {
 		Utils.mensaje("\nMENU DE PRUEBAS");
 		Utils.mensaje("");

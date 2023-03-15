@@ -6,7 +6,7 @@ import Grupo3.GestorCompeticiones.utils.Utils;
 public class VistaCompeticion implements iVistaCompeticion {
 
 	
-	@Override
+	
 	public void mostrarMenuCompeticion() {
 		Utils.mensaje("\nMENU DE COMPETICIONES");
 		Utils.mensaje("[1]CREAR COMPETICION");

@@ -5,13 +5,13 @@ public interface iControladorGrupo {
 
 	void controlarMenuGrupos();
 
-	void mostrarMenuGrupos();
+	
 
-	void ejecutarAñadirGrupos();
+	
 
-	void añadirGrupos();
+	void crearGrupos();
 
-	void insertarGimnastas();
+	
 
 	void buscarGrupos();
 

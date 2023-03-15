@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		ControladorPrincipal  p = new ControladorPrincipal();
-		p.controlarMenuPrincipal();
+		p.empezar();
 
 	}
 

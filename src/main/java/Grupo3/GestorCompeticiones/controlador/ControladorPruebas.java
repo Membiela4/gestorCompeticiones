@@ -34,7 +34,7 @@ public class ControladorPruebas implements iControladorPruebas {
 		}while(opcion!=7);	
 	}
 
-	public void controlarMenuInsertarPrueba(int opcion) {
+	 public void controlarMenuInsertarPrueba(int opcion) {
 		switch(opcion) {
 			case 0:
 		 			volverMenuCompeticion();
@@ -122,7 +122,7 @@ public void volverMenuCompeticion() {
 @Override
 public void buscarPrueba() {
 	 TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba a buscar:");
-	    Categoria categoria = Utils.validaCategoria("Introduce la categoría a buscar:");
+	    Categoria categoria = Utils.validaCategoria("Introduce la categorï¿½a a buscar:");
 	    Aparato aparato = Utils.validaAparato("Introduce el aparato a buscar:");
 		for (Prueba p : pruebas) {
 			if((p.getCategoria()==categoria)&&(p.getAparato()==aparato)&&(p.getTipo()==tipo))

@@ -1,4 +1,4 @@
-package Grupo3.GestorCompeticiones.model.DAO;
+package Grupo3.GestorCompeticiones.model.Repo;
 
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoCompeticion;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;

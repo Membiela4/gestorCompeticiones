@@ -12,8 +12,8 @@ public class RepoCompeticion implements iRepoCompeticion {
 //		
 //		
 //	}
-
 	
+
 	public boolean insertaCompeticion(Competicion c) {
 		
 		boolean result = false;
@@ -25,13 +25,11 @@ public class RepoCompeticion implements iRepoCompeticion {
 		return result;
 	}
 
-	
 	public Competicion buscaCompeticion(String nombre) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
 	public boolean eliminaCompeticion(Competicion c) {
 		// TODO Auto-generated method stub
 		return false;

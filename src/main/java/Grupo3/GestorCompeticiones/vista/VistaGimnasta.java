@@ -10,7 +10,7 @@ public class VistaGimnasta implements iVistaGimnasta {
 
 
 
-	@Override
+	
 	public void mostrarMenuGimnasta() {
 		Utils.mensaje("\nMENU DE GIMNASTAS");
 		Utils.mensaje("");

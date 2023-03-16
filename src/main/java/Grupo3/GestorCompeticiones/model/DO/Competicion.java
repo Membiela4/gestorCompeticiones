@@ -1,12 +1,17 @@
 package Grupo3.GestorCompeticiones.model.DO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Competicion {
 
 	private String nombre;
 	private String descripcion;
 	private Date fechaInicio;
+	private ArrayList<Prueba> pruebas;
+	
+	
 	
 	public String getNombre() {
 		return nombre;
@@ -27,54 +32,61 @@ public class Competicion {
 		this.fechaInicio = fechaInicio;
 	}
 	
-	public Competicion(String nombre, String descripcion, Date fechaInicio) {
+	public List<Prueba> getPruebas() {
+		return pruebas;
+	}
+	public void setPruebas(ArrayList<Prueba> pruebas) {
+		this.pruebas = pruebas;
+	}
+	
+	
+	
+	public Competicion(String nombre, String descripcion, Date fechaInicio, ArrayList<Prueba> pruebas) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
+		this.pruebas = pruebas;
 	}
-	@Override
-	public String toString() {
-		return "[COMPETICION] \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
+	
+	public Competicion() {
+		super();
 	}
+	
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((fechaInicio == null) ? 0 : fechaInicio.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Competicion other = (Competicion) obj;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (fechaInicio == null) {
-			if (other.fechaInicio != null)
-				return false;
-		} else if (!fechaInicio.equals(other.fechaInicio))
-			return false;
 		if (nombre == null) {
-			if (other.nombre != null)
+			if (other.nombre != null) {
 				return false;
-		} else if (!nombre.equals(other.nombre))
+			}
+		} else if (!nombre.equals(other.nombre)) {
 			return false;
+		}
 		return true;
 	}
-
-	
-	
+	@Override
+	public String toString() {
+		return "[COMPETICION] \nNombre: " + nombre + "\nDescripcion:" + descripcion + "\nFecha inicio: " + fechaInicio;
+	}
 	
 	
 	

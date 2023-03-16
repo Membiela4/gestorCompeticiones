@@ -12,6 +12,7 @@ public class RepoCompeticion implements iRepoCompeticion {
 //		
 //		
 //	}
+	
 
 	public boolean insertaCompeticion(Competicion c) {
 		

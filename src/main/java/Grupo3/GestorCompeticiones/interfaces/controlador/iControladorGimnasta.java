@@ -1,5 +1,7 @@
 package Grupo3.GestorCompeticiones.interfaces.controlador;
 
+import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
+
 public interface iControladorGimnasta {
 	
 

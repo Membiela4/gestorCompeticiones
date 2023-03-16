@@ -1,10 +1,13 @@
 package Grupo3.GestorCompeticiones.interfaces.controlador;
 
+import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
+import Grupo3.GestorCompeticiones.model.DO.Grupo;
+
 public interface iControladorParticipacion {
 	
 	void ejecutarMenuInsertarParticipaciones();
 
-	void controlarMenuInsertarParticipaciones();
+	void controlarMenuInsertarParticipaciones(int opcion);
 
 	void mostrarMenuInsertarParticipaciones();
 

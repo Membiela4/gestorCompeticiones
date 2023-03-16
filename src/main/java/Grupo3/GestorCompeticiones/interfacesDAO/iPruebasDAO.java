@@ -1,11 +1,11 @@
-package Grupo3.GestorCompeticiones.interfaces.repo;
+package Grupo3.GestorCompeticiones.interfacesDAO;
 
 import Grupo3.GestorCompeticiones.model.DO.Aparato;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Prueba;
 import Grupo3.GestorCompeticiones.model.DO.TipoPrueba;
 
-public interface iRepoPruebas {
+public interface iPruebasDAO {
 	
 	String muestraPrueba();
 	

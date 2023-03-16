@@ -1,8 +1,8 @@
-package Grupo3.GestorCompeticiones.interfaces.repo;
+package Grupo3.GestorCompeticiones.interfacesDAO;
 
 import Grupo3.GestorCompeticiones.model.DO.Participacion;
 
-public interface iRepoParticipacion<T> {
+public interface iParticipacionDAO<T> {
 	
 	String muestraParticipacion();
 	

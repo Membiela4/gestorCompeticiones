@@ -1,8 +1,8 @@
-package Grupo3.GestorCompeticiones.interfaces.repo;
+package Grupo3.GestorCompeticiones.interfacesDAO;
 
 import Grupo3.GestorCompeticiones.model.DO.Grupo;
 
-public interface iRepoGrupo {
+public interface iGrupoDAO {
 	
 	String muestraGrupo();
 	

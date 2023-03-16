@@ -1,4 +1,4 @@
-package Grupo3.GestorCompeticiones.model.DAO;
+package Grupo3.GestorCompeticiones.repo;
 
 import java.util.ArrayList;
 

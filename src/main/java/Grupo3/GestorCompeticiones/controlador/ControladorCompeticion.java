@@ -6,8 +6,8 @@ import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaCompeticion;
-import Grupo3.GestorCompeticiones.model.DAO.RepoCompeticion;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;
+import Grupo3.GestorCompeticiones.repo.RepoCompeticion;
 import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class ControladorCompeticion implements iControladorCompeticion {

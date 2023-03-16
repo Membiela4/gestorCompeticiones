@@ -1,12 +1,15 @@
 package Grupo3.GestorCompeticiones.model.DO;
 
 import java.util.Date;
+import java.util.List;
 
 public class Competicion {
 
 	private String nombre;
 	private String descripcion;
 	private Date fechaInicio;
+	
+	private List<Prueba> pruebas;
 	
 	public String getNombre() {
 		return nombre;

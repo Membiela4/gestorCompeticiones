@@ -53,6 +53,8 @@ public class Participacion<T> {
 		this.partincipante = partincipante;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -77,8 +79,8 @@ public class Participacion<T> {
 
 	@Override
 	public String toString() {
-		return "Participacion [dorsal=" + dorsal + ", horaInicio=" + horaInicio + ", puntos=" + puntos
-				+ ", partincipante=" + partincipante + "]";
+		return "PARTICIPACION \ndorsal: " + dorsal + "\nHora Inicio: " + horaInicio + "\nPuntos: " + puntos
+				+ "\nPartincipante: " + partincipante;
 	}
 	
 	

@@ -2,24 +2,22 @@ package Grupo3.GestorCompeticiones.controlador;
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.*;
 import Grupo3.GestorCompeticiones.interfaces.repo.*;
-import Grupo3.GestorCompeticiones.model.DAO.RepoParticipacion;
 import Grupo3.GestorCompeticiones.model.DO.*;
+import Grupo3.GestorCompeticiones.model.Repo.RepoGimnasta;
 import Grupo3.GestorCompeticiones.utils.Utils;
 import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 
 public class ControladorParticipacion implements iControladorParticipacion {
 
-	private VistaPruebas vistapruebas;
-	private iRepoPruebas repoPruebas;
-	private iControladorParticipacion controlarParticipacion;
-	private iControladorPrincipal controlarPrincipal;
-	private iControladorCompeticion controlarComp;
-	private iControladorPruebas controlPruebas;
-	private iControladorGimnasta controlGimnastas;
-	private iControladorGrupo controlGrupos;
-	private iRepoGimnasta gimnastas;
-	private iRepoGrupo grupos;
-	private iRepoParticipacion participacion;
+	private VistaPruebas vistapruebas; 
+	private ControladorParticipacion controlarParticipacion;
+	private ControladorPrincipal controlarPrincipal;
+	private ControladorCompeticion controlarComp;
+	private ControladorPruebas controlPruebas;
+	private ControladorGimnasta controlGimnastas;
+	private ControladorGrupo controlGrupos;
+	private RepoGimnasta gimnastas;
+	
 
 	public void ejecutarMenuInsertarParticipaciones() {
 		int opcion;

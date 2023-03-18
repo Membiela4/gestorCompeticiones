@@ -1,5 +1,6 @@
 package Grupo3.GestorCompeticiones.model.DO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Prueba {
@@ -7,10 +8,10 @@ public class Prueba {
 	private TipoPrueba tipo;
 	private Categoria categoria;
 	private Aparato aparato;
-	private List<Participacion> participantes;
+	private ArrayList<Participacion> participantes;
 
 	
-	public Prueba(TipoPrueba tipo, Categoria categoria, Aparato aparato, List<Participacion> participantes) {
+	public Prueba(TipoPrueba tipo, Categoria categoria, Aparato aparato, ArrayList<Participacion> participantes) {
 		super();
 		this.tipo = tipo;
 		this.categoria = categoria;
@@ -51,7 +52,7 @@ public class Prueba {
 		return participantes;
 	}
 
-	public void setParticipantes(List<Participacion> participantes) {
+	public void setParticipantes(ArrayList<Participacion> participantes) {
 		this.participantes = participantes;
 	}
 

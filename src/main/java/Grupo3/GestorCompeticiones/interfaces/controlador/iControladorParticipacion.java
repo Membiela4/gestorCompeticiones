@@ -7,18 +7,22 @@ public interface iControladorParticipacion {
 	
 	void ejecutarMenuInsertarParticipaciones();
 
-	void controlarMenuInsertarParticipaciones(int opcion);
-
-	void mostrarMenuInsertarParticipaciones();
-
-	void insertarGimnasta();
-
-	void insertarGrupo();
+	void controlarMenuParticipaciones(int opcion);
 
 	void volverMenuPruebas();
 
 	void volverMenuCompeticion();
 
 	void volverMenuPrincipal();
+	
+	boolean agregarParticipacion();
+	
+	boolean eliminarParticipacion(int dorsal);
+	
+	void mostrarParticipaciones();
+	
+	boolean editarParticipacion(int dorsal);
+	
+	void buscarParticipacion(int dorsal);
 
 }

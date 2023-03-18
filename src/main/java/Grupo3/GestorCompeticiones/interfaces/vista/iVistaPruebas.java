@@ -2,7 +2,9 @@ package Grupo3.GestorCompeticiones.interfaces.vista;
 
 public interface iVistaPruebas {
 
-	void mostrarMenuInsertarPrueba();
+	void mostrarMenuPrueba();
+	
+	void mostrarMenuParticipacion();
 	
 	
 }

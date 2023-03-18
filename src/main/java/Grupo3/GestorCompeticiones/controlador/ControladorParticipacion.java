@@ -10,40 +10,39 @@ import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 public class ControladorParticipacion implements iControladorParticipacion {
 
 	private VistaPruebas vistapruebas; 
-	private ControladorParticipacion controlarParticipacion;
 	private ControladorPrincipal controlarPrincipal;
 	private ControladorCompeticion controlarComp;
 	private ControladorPruebas controlPruebas;
 	private ControladorGimnasta controlGimnastas;
 	private ControladorGrupo controlGrupos;
-	private RepoGimnasta gimnastas;
+	
 	
 
 	public void ejecutarMenuInsertarParticipaciones() {
 		int opcion;
 		do {
-			controlarParticipacion.mostrarMenuInsertarParticipaciones();
+			vistapruebas.mostrarMenuParticipacion();
 			opcion = Utils.leeEntero("Elige opcion: ");
-			controlarMenuInsertarParticipaciones(opcion);
+			controlarMenuParticipaciones(opcion);
 		} while (opcion != 6);
 	}
 
-	public void controlarMenuInsertarParticipaciones(int opcion) {
+	public void controlarMenuParticipaciones(int opcion) {
 		switch (opcion) {
 		case 1:
-			insertarGimnasta();
+			
 			break;
 		case 2:
-			insertarGrupo();
+			
 			break;
 		case 3:
-			volverMenuCompeticion();
+			
 			break;
 		case 4:
-			volverMenuPruebas();
+
 			break;
 		case 5:
-			volverMenuPrincipal();
+			
 			break;
 
 		default:
@@ -52,17 +51,6 @@ public class ControladorParticipacion implements iControladorParticipacion {
 
 	}
 
-	public void mostrarMenuInsertarParticipaciones() {
-
-	}
-
-	public void insertarGimnasta() {
-
-	}
-
-	public void insertarGrupo() {
-
-	}
 
 	public void volverMenuPruebas() {
 		controlPruebas.controlarMenuInsertarPrueba(0);
@@ -77,6 +65,36 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	public void volverMenuPrincipal() {
 		controlarPrincipal.controlarMenuPrincipal();
 
+	}
+
+	@Override
+	public boolean agregarParticipacion() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean eliminarParticipacion(int dorsal) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void mostrarParticipaciones() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean editarParticipacion(int dorsal) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void buscarParticipacion(int dorsal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

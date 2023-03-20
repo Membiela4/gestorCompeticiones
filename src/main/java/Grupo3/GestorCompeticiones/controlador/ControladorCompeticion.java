@@ -92,6 +92,19 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	}
 	
 	
+	public Competicion insertarCompeticion() {
+		
+		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
+		String descripcion=Utils.leeString("Introduce una descripcion");
+		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
+		ArrayList<Prueba> pruebas = new ArrayList<>();
+		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio,pruebas);
+		
+		
+		return competicion;
+	}
+	
+	
 	public void editarCompeticion() {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		ArrayList<Competicion> competiciones  = rc.getCompeticiones();

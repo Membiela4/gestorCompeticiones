@@ -1,8 +1,12 @@
 package Grupo3.GestorCompeticiones.controlador;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import Grupo3.GestorCompeticiones.interfaces.controlador.*;
 import Grupo3.GestorCompeticiones.interfaces.repo.*;
 import Grupo3.GestorCompeticiones.model.DO.*;
+import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
 import Grupo3.GestorCompeticiones.model.Repo.RepoGimnasta;
 import Grupo3.GestorCompeticiones.utils.Utils;
 import Grupo3.GestorCompeticiones.vista.VistaPruebas;
@@ -15,6 +19,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	private ControladorPruebas controlPruebas;
 	private ControladorGimnasta controlGimnastas;
 	private ControladorGrupo controlGrupos;
+	private ArrayList<Participacion> participaciones = new ArrayList();
 	
 	
 
@@ -30,23 +35,23 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	public void controlarMenuParticipaciones(int opcion) {
 		switch (opcion) {
 		case 1:
-			
+			agregarParticipacion();
 			break;
 		case 2:
-			
+			editarParticipacion();
 			break;
 		case 3:
-			
+			eliminarParticipacion();
 			break;
 		case 4:
-
+			mostrarParticipaciones();
 			break;
 		case 5:
-			
+			buscarParticipacion();
 			break;
 
 		default:
-			System.out.println("Incorrecto");
+			Utils.mensaje("Opcion incorrecta");
 		}
 
 	}
@@ -69,32 +74,105 @@ public class ControladorParticipacion implements iControladorParticipacion {
 
 	@Override
 	public boolean agregarParticipacion() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		boolean result = false;
+
+		Participacion participacion = new Participacion(0, null, 0, null);
+		participacion.crearParticipacion();
+		
+		if(participaciones.add(participacion)) {
+			result=true;
+		}
+		
+
+		rc.guardaXML();
+		
+		
+		return result;
 	}
 
 	@Override
-	public boolean eliminarParticipacion(int dorsal) {
-		// TODO Auto-generated method stub
+	public boolean eliminarParticipacion() {
+		
+		RepoCompeticion rc =RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		
+		
+		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas eliminar");
+		Iterator<Competicion> it = competiciones.iterator();
+		
+		Competicion p = it.next();
+		while(it.hasNext()) {
+			if(p.getPruebas().getParticipantes()==dorsal) {
+				competiciones.remove(p);
+			}
+		}
+		
+		
+		
+		
+		
 		return false;
 	}
 
 	@Override
 	public void mostrarParticipaciones() {
-		// TODO Auto-generated method stub
+		
+		RepoCompeticion rc =RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion aux = it.next();
+		while(it.hasNext()) {
+			System.out.println(aux.getPruebas().getParticipantes());
+		}
 		
 	}
 
 	@Override
-	public boolean editarParticipacion(int dorsal) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean editarParticipacion() {
+		RepoCompeticion rc =RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		boolean result = false;
+		
+		
+		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas eliminar");
+		Iterator<Competicion> it = competiciones.iterator();
+		
+		Competicion p = it.next();
+		while(it.hasNext()) {
+			if(p.getPruebas().getParticipantes()==dorsal) {
+				competiciones.remove(p);
+			}
+			
+			Competicion c = controlarComp.insertarCompeticion();
+			
+			if(competiciones.add(c)) {
+				result=true;
+			}
+		}
+		rc.guardaXML();
+		
+		return result;
 	}
 
 	@Override
-	public void buscarParticipacion(int dorsal) {
-		// TODO Auto-generated method stub
+	public void buscarParticipacion() {
 		
+		RepoCompeticion rc =RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		
+		
+		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas buscar");
+		Iterator<Competicion> it = competiciones.iterator();
+		
+		Competicion p = it.next();
+		while(it.hasNext()) {
+			if(p.getPruebas().getParticipantes()==dorsal) {
+				System.out.println(p);
+			}
+		}
 	}
 
 }

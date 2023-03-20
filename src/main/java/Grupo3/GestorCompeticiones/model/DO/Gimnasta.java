@@ -1,11 +1,13 @@
 package Grupo3.GestorCompeticiones.model.DO;
 
+import java.util.List;
+
 public class Gimnasta extends Persona {
 	
 	private String dni=super.getDni();
 	private Categoria categoria;
 	private String club;
-	
+	private 
 	/*
 	 * Constructores
 	 */
@@ -20,6 +22,7 @@ public class Gimnasta extends Persona {
 		this.categoria=null;
 		this.club=null;
 	}
+	
 
 	/*
 	 * Equals

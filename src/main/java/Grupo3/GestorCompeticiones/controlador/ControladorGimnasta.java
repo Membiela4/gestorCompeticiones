@@ -1,6 +1,8 @@
 package Grupo3.GestorCompeticiones.controlador;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGimnasta;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGrupo;
@@ -9,6 +11,7 @@ import Grupo3.GestorCompeticiones.interfaces.repo.iRepoGimnasta;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaGimnasta;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
+import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
 import Grupo3.GestorCompeticiones.model.Repo.RepoGimnasta;
 import Grupo3.GestorCompeticiones.utils.SerializadorManager;
 import Grupo3.GestorCompeticiones.utils.Utils;
@@ -66,7 +69,10 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	/**
 	 * Subcontrolador que se encarga de controlar el insert de gimnasta
 	 */
-	public void insertarGimnasta() {
+	
+	//tocar metodo
+	
+	/*public void insertarGimnasta() {
 		String nombre = Utils.leeString("Inserte el nombre:" );
 		String dni = Utils.validaDNI("Inserte el DNI: ");
 		String telefono = Utils.validaTLF("Introduce el telefono: ");
@@ -81,39 +87,109 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		}
 		
 	}
+	*/
+	public static boolean insertarGimnasta(Gimnasta g) {
+		String nombre = Utils.leeString("Inserte el nombre:" );
+		String dni = Utils.validaDNI("Inserte el DNI: ");
+		String telefono = Utils.validaTLF("Introduce el telefono: ");
+		String correo = Utils.leeString("Introduce el correo: ");
+		ArrayList<Gimnasta> gimnasta = new ArrayList<>();
+		Gimnasta gim = new Gimnasta(nombre, dni, telefono, correo);
+		
+		 
+		
+		return true;
+	}
 	/**
 	 * Subcontrolador que se encarga de controlar el buscar e imprimir el gimnasta a traves del dni.
 	 */
+	
+	
+	//tocar metodo
 	public void buscarGimnasta() {
 		
-		String dni=Utils.validaDNI("Introduce el DNI del gimnasta a buscar: ");
-	
+		RepoGimnasta rg = RepoGimnasta.newInstance();
+		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
+		String gim=Utils.leeString("Introduce el nombre de la Gimnasta: ");
+		
+		Iterator<Gimnasta> it = gimnastas.iterator();
+		Gimnasta g = it.next();
+		while(it.hasNext()) {
+			if(g.getNombre().equals(gim)) {
+				Utils.imprimeObjeto(g);
+				
+			}
+		}
+		
 	}
+		
+	
+			
+		
+		
+		
+		
+	
 	/**
 	 * Subcontrolador que se encarga de controlar la edicion del gimnasta.
 	 */
+	
+	//tocar metodo
 	public void editarGimnasta() {
+		
+		RepoGimnasta rg = RepoGimnasta.newInstance();
+		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
+		String gimnasta= Utils.leeString("Introduce el nombre de la Gimansta para editar: ");
+
+		
+		Iterator<Gimnasta> it = gimnastas.iterator();
 		Gimnasta g = null;
-		g = repoGimnasta.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Ginmasta que desea editar: "));
 		
-		String nombre = Utils.leeString("Introduce el nombre: ");
-		String tlf = Utils.validaTLF("Introduce el telefono: ");
-		String correo = Utils.leeString("Inserta el correo: ");
-		Categoria categoria = Utils.validaCategoria("Introduce categoria del gimnasta");
-		String club = Utils.leeString("Introduce club del gimnasta");
 		
-		g.setNombre(nombre);
-		g.setTelefono(tlf);
-		g.setCorreo(correo);
-		
+		while(it.hasNext()) {
+			if(it.equals(g)) {
+				String nombre = Utils.leeString("Inserte el nombre:" );
+				String dni = Utils.validaDNI("Inserte el DNI: ");
+				String telefono = Utils.validaTLF("Introduce el telefono: ");
+				String correo = Utils.leeString("Introduce el correo: ");
+			
+				g.getNombre();
+				g.getDni();
+				g.getTelefono();
+				g.getCorreo();
+				break;
+			}
+			
+				if(gimnastas.add(g)) {
+					rg.guardaXML();
+				}else {
+					Utils.mensaje("No se pudo editar a la gimnasta");
+				}	
+			
+			
+			
+		}		
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar la eliminacion de gimnasta.
 	 */
+	
+	//tocarlo 
 	public void eliminarGimnasta() {
-		if(repoGimnasta.eliminaGinmasta(repoGimnasta.buscaGimnasta(Utils.validaDNI("Introduce el DNI del Gimnasta a eliminar ")))==true) {
-			Utils.mensaje("Has eliminado el Gimnasta correctamente");
+		RepoGimnasta rg = RepoGimnasta.newInstance();
+		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
+		String nombre = Utils.leeString("Introduzca el nombre de la gimnasta para eliminar");
+		
+		Iterator<Gimnasta> it = gimnastas.iterator();
+		Gimnasta gim = it.next();
+		Gimnasta g = it.next();
+		while(it.hasNext()) {
+			if(gim.equals(g.getNombre())) {
+				gimnastas.remove(g);
+				break;
+			}
 		}
+			rg.guardaXML();
 		
 	}
 	/**
@@ -121,11 +197,21 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de moatrar todo los gimnastas federados.
 	 */
 	
+	
+	//pendiente
 	public void mostrarGimnastas() {
 		
 		
-		String allGim = repoGimnasta.muestraGimnastas();
-		Utils.imprimeObjeto(allGim);
+		RepoGimnasta rg = RepoGimnasta.newInstance();
+		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
+
+		Iterator<Gimnasta> it = gimnastas.iterator();
+		Gimnasta g =it.next();
+		
+		while(it.hasNext()) {
+			Utils.imprimeObjeto(g);
+		}
+		
 		
 	}
 	/**
@@ -142,6 +228,10 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		controlaPrin.controlarMenuPrincipal();
 		
 	}
+	
+	
+	
+
 	
 	
 }

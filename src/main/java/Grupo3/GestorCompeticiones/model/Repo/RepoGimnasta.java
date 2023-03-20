@@ -65,6 +65,8 @@ public boolean guardaXML() {
 
 	
 	
+joselu_gimnastas
+ main
 
 	
 

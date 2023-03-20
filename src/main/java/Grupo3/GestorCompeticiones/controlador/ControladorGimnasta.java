@@ -20,7 +20,6 @@ import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 public class ControladorGimnasta implements iControladorGimnasta{
 	
 	private VistaGimnasta vistaGim = new VistaGimnasta();
-	private RepoGimnasta repoGimnasta = new RepoGimnasta();
 	private iControladorPrincipal controlaPrin= new ControladorPrincipal();
 	private iControladorGrupo controlaGrup;
 
@@ -88,17 +87,16 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 	}
 	*/
-	public static boolean insertarGimnasta(Gimnasta g) {
-		String nombre = Utils.leeString("Inserte el nombre:" );
-		String dni = Utils.validaDNI("Inserte el DNI: ");
-		String telefono = Utils.validaTLF("Introduce el telefono: ");
-		String correo = Utils.leeString("Introduce el correo: ");
-		ArrayList<Gimnasta> gimnasta = new ArrayList<>();
-		Gimnasta gim = new Gimnasta(nombre, dni, telefono, correo);
-		
+	public boolean insertarGimnasta() {
+	
+		 RepoGimnasta rg = RepoGimnasta.newInstance();
+		 ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
 		 
+		 Gimnasta g = crearGimnasta();
+		 rg.guardaXML();
+		return gimnastas.add(g);
 		
-		return true;
+		
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar el buscar e imprimir el gimnasta a traves del dni.
@@ -172,10 +170,12 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar la eliminacion de gimnasta.
+	 * @return 
 	 */
 	
 	//tocarlo 
-	public void eliminarGimnasta() {
+	public boolean eliminarGimnasta() {
+		boolean result = false;
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
 		String nombre = Utils.leeString("Introduzca el nombre de la gimnasta para eliminar");
@@ -186,11 +186,12 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		while(it.hasNext()) {
 			if(gim.equals(g.getNombre())) {
 				gimnastas.remove(g);
+				result = true;
 				break;
 			}
 		}
 			rg.guardaXML();
-		
+		return result;
 	}
 	/**
 	 *Comento el metodo para que no de fallos mientras hago pruebas
@@ -228,6 +229,19 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		controlaPrin.controlarMenuPrincipal();
 		
 	}
+	
+	public Gimnasta crearGimnasta() {
+		String nombre = Utils.leeString("Inserte el nombre:" );
+		String dni = Utils.validaDNI("Inserte el DNI: ");
+		String telefono = Utils.validaTLF("Introduce el telefono: ");
+		String correo = Utils.leeString("Introduce el correo: ");
+		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta");
+		
+		Gimnasta gim = new Gimnasta(nombre, dni, telefono, categoria, correo);
+		
+		return gim;
+	}
+	
 	
 	
 	

@@ -7,17 +7,19 @@ public interface iControladorGimnasta {
 
 	void controlarMenuGimnasta();
 	
-	void insertarGimnasta();
+	boolean insertarGimnasta();
 
 	void buscarGimnasta();
 
 	void editarGimnasta();
 
-	void eliminarGimnasta();
+	boolean eliminarGimnasta();
 
-//	void mostrarGimnastas();
+	void mostrarGimnastas();
 
 	void ejecutarMenugrupos();
 
-	void volverMenuPrincipal(); 
+	void volverMenuPrincipal();
+
+	Gimnasta crearGimnasta(); 
 }

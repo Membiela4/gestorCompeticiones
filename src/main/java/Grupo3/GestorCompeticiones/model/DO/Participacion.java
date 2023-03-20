@@ -2,14 +2,17 @@ package Grupo3.GestorCompeticiones.model.DO;
 
 import java.util.Date;
 
+import Grupo3.GestorCompeticiones.controlador.ControladorGimnasta;
+import Grupo3.GestorCompeticiones.utils.Utils;
+
 public class Participacion<T> {
 
 	private int dorsal;
-	private Date horaInicio;
+	private String horaInicio;
 	private int puntos=0;
 	private T partincipante;
 	
-	public Participacion(int dorsal, Date horaInicio, int puntos, T partincipante) {
+	public Participacion(int dorsal, String horaInicio, int puntos, T partincipante) {
 		super();
 		this.dorsal = dorsal;
 		this.horaInicio = horaInicio;
@@ -29,11 +32,11 @@ public class Participacion<T> {
 		this.dorsal = dorsal;
 	}
 
-	public Date getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
@@ -52,6 +55,8 @@ public class Participacion<T> {
 	public void setPartincipante(T partincipante) {
 		this.partincipante = partincipante;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
@@ -77,9 +82,22 @@ public class Participacion<T> {
 
 	@Override
 	public String toString() {
-		return "Participacion [dorsal=" + dorsal + ", horaInicio=" + horaInicio + ", puntos=" + puntos
-				+ ", partincipante=" + partincipante + "]";
+		return "PARTICIPACION \ndorsal: " + dorsal + "\nHora Inicio: " + horaInicio + "\nPuntos: " + puntos
+				+ "\nPartincipante: " + partincipante;
 	}
 	
+	
+	public Participacion crearParticipacion() {
+		
+		Participacion p = new Participacion();
+		
+		p.setDorsal(Utils.leeEntero("Introduce dorsal de la participacion"));
+		p.setHoraInicio(Utils.leeString("Introduce la hora de inicio de la participacion"));
+		p.setPuntos(Utils.leeEntero("Introduce puntuacion alcanzada"));
+		p.setPartincipante(ControladorGimnasta.crearGimnasta());
+		
+		return p;
+		
+	}
 	
 }

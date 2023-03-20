@@ -2,7 +2,11 @@ package Grupo3.GestorCompeticiones.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import javax.crypto.spec.RC2ParameterSpec;
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
@@ -10,11 +14,14 @@ import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaCompeticion;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;
+import Grupo3.GestorCompeticiones.model.DO.Prueba;
 import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
 import Grupo3.GestorCompeticiones.utils.Utils;
+import Grupo3.GestorCompeticiones.utils.XMLmanager;
 import Grupo3.GestorCompeticiones.vista.VistaCompeticion;
 
 public class ControladorCompeticion implements iControladorCompeticion {
+	
 	List<Competicion> competiciones = new ArrayList();
     RepoCompeticion repoComp;
     ControladorPruebas controladorPruebas = new ControladorPruebas();
@@ -33,13 +40,13 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	public void controlarMenuCompeticion(int opcion) {
 		switch(opcion) {
 		    case 0:
-		    		controladorPrincipal.controlarMenuPrincipal();
+		    		volverMenuPrincipal();
 		    		break;
 			case 1:
 					crearCompeticion();
 					break;
 			case 2:
-//					editarCompeticion();
+					editarCompeticion();
 					break;
 			case 3:
 					buscarCompeticion();
@@ -59,43 +66,137 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		}
 		
 	}
+	
+	//CRUD
+	
+	/*
+	 * metodo que crea una competicion y la inserta en el xml, antes carga el xml y lo actualiza con la informacion actualizada
+	 */
 	public void crearCompeticion() {
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
 
 		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
 		String descripcion=Utils.leeString("Introduce una descripcion");
 		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
+		ArrayList<Prueba> pruebas = new ArrayList<>();
 		
-		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio);
-		competiciones.add(competicion);
-		Utils.mensaje("Competicion creada correctamente");
+		
+		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio,pruebas);
+		if(competiciones.add(competicion)){
+			Utils.mensaje("Competicion creada correctamente");
+		}else {
+			Utils.mensaje("Error al introducir competicion");
+		}
+		rc.guardaXML();
 	}
 	
 	
-//	public void editarCompeticion( ) {
-//		
-//		Competicion competicion = buscarCompeticion();
-//	    String nuevoNombre=Utils.leeString("Introduce el nuevo nombre de la competicion");
-//		String nuevaDescripcion=Utils.leeString("Introduce una descripcion");
-//		Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competicion");
-//	    
-//	    if (competicion != null) {
-//	        competicion.setNombre( nuevoNombre);
-//	        competicion.setDescripcion(nuevaDescripcion);
-//	        competicion.setFechaInicio(nuevaFechaInicio);
-//	        
-//	        Utils.mensaje("La competicion  ha sido actualizada ");
-//	    }else {
-//	    	 Utils.mensaje("No se ha encontrado ninguna competicion con el nombre introducido");
-//	    }
-//	}
-//	
+	public Competicion insertarCompeticion() {
+		
+		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
+		String descripcion=Utils.leeString("Introduce una descripcion");
+		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
+		ArrayList<Prueba> pruebas = new ArrayList<>();
+		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio,pruebas);
+		
+		
+		return competicion;
+	}
+	
+	
+	public void editarCompeticion() {
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones  = rc.getCompeticiones();
+		String nombre= Utils.leeString("Introduce el nombre de la competicion a editar");
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion competicion =null;
+		
+		while(it.hasNext()) {
+			if(it.equals(nombre)) {
+				String nuevoNombre=Utils.leeString("Introduce el nuevo nombre de la competicion");
+				String nuevaDescripcion=Utils.leeString("Introduce una descripcion");
+				Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competicion");
+				
+				 competicion.setNombre(nuevoNombre);
+			     competicion.setDescripcion(nuevaDescripcion);
+			     competicion.setFechaInicio(nuevaFechaInicio);
+			        
+				break;
+			}
+			
+				if(competiciones.add(competicion)) {
+					rc.guardaXML();
+				}else {
+					Utils.mensaje("No se ha podido editar la competicion");
+				}
+		}
+	
+	}
+	    
 	public void buscarCompeticion() {
+		RepoCompeticion rp = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rp.getCompeticiones();
+		
 		String comp=Utils.leeString("Introduce el nombre de la competicion ");
-		for (Competicion c : competiciones) {
-			if(c.getNombre()==comp)
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion c = it.next();
+		while(it.hasNext()) {
+			if(c.getNombre().equals(comp)) {
 				Utils.imprimeCompeticion(c);
+				
+			}
+		}
+	
+	}
+	
+	
+	public void eliminaCompeticion() {
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		String nombre = Utils.leeString("Introduce el nombre de la competicion que deseas eliminar");
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion comp = it.next();
+		Competicion c = it.next();
+		while(it.hasNext()) {
+			if(comp.equals(c.getNombre())) {
+				competiciones.remove(c);
+				break;
+			}
+		}
+			rc.guardaXML();
+	}
+	
+	public void eliminaCompeticion(Competicion c) {
+		
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion c2 = it.next();
+		while(it.hasNext()) {
+			if(c2.equals(c)) {
+				competiciones.remove(c);
+			}
+		}
+		rc.guardaXML();
+	}
+	public void muestraCompeticion() {
+		RepoCompeticion rp = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competiciones = rp.getCompeticiones();
+		
+		Iterator<Competicion> it = competiciones.iterator();
+		Competicion c = it.next();
+		
+		while(it.hasNext()) {
+			Utils.imprimeCompeticion(c);
 		}
 	}
+
+
 	public void ejecutarMenuInsertarPrueba() {
 		controladorPruebas.controlarMenuInsertarPrueba(0);
 		}
@@ -104,20 +205,5 @@ public class ControladorCompeticion implements iControladorCompeticion {
 		controladorPrincipal.controlarMenuPrincipal();
 	}
 	
-	public void eliminaCompeticion() {
-		if(repoComp.eliminaCompeticion(repoComp.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion que quieras eliminar")))==true) {
-			Utils.mensaje("La competicion ha sido eliminada");
-		}
-		else {
-			Utils.mensaje("No se ha podido eliminar la competicion");
-		}
-		
-	}
-	public void muestraCompeticion() {
-		for (Competicion c : competiciones) {
-			System.out.println(c);
-		}
-	}
-
 	
 }

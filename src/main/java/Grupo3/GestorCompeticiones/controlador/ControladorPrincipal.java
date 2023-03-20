@@ -11,7 +11,7 @@ import Grupo3.GestorCompeticiones.vista.VistaPrincipal;
 public class ControladorPrincipal implements iControladorPrincipal{
 
 
-	iControladorGrupo controlaGrup;
+	ControladorGrupo controlaGrup;
 
 	ControladorCompeticion controladorCompeticion = new ControladorCompeticion();
 	ControladorGimnasta controladorGimnasta = new ControladorGimnasta();

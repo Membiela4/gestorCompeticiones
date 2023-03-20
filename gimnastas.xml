@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <repoGimnasta>
     <gimnastas>
-        <correo>kdlnvjdnvdfvvfd</correo>
+        <correo>ejemplo1@gmail.com</correo>
         <dni>31032075S</dni>
-        <nombre>jhbvdskhjvb</nombre>
+        <nombre>David</nombre>
         <telefono>786745445</telefono>
     </gimnastas>
     <gimnastas>
-        <correo>vdvdfbv</correo>
+        <correo>ejemplo2@gmail.es</correo>
         <dni>51213476C</dni>
-        <nombre>MMVMVMV</nombre>
+        <nombre>Rafa</nombre>
         <telefono>875698435</telefono>
     </gimnastas>
 </repoGimnasta>

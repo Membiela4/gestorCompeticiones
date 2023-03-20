@@ -10,7 +10,7 @@ public interface iControladorCompeticion {
 
 	void crearCompeticion();
 
-//	void editarCompeticion();
+	void editarCompeticion();
 
 	void buscarCompeticion();
 

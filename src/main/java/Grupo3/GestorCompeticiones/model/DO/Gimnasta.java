@@ -7,12 +7,12 @@ public class Gimnasta extends Persona {
 	private String dni=super.getDni();
 	private Categoria categoria;
 	private String club;
-	private 
+	
 	/*
 	 * Constructores
 	 */
 
-	public Gimnasta(String nombre, String dni, String telefono, String correo) {
+	public Gimnasta(String nombre, String dni, String telefono, Categoria categoria, String correo) {
 		super(nombre, dni, telefono, correo);
 		
 	}

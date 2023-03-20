@@ -121,11 +121,6 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 	}
 		
-	
-			
-		
-		
-		
 		
 	
 	/**
@@ -141,24 +136,16 @@ public class ControladorGimnasta implements iControladorGimnasta{
 
 		
 		Iterator<Gimnasta> it = gimnastas.iterator();
-		Gimnasta g = null;
+		Gimnasta g = it.next();
 		
 		
 		while(it.hasNext()) {
-			if(it.equals(g)) {
-				String nombre = Utils.leeString("Inserte el nombre:" );
-				String dni = Utils.validaDNI("Inserte el DNI: ");
-				String telefono = Utils.validaTLF("Introduce el telefono: ");
-				String correo = Utils.leeString("Introduce el correo: ");
+			if(g.getNombre()==gimnasta) {
+				gimnastas.remove(g);				
 			
-				g.getNombre();
-				g.getDni();
-				g.getTelefono();
-				g.getCorreo();
-				break;
 			}
-			
-				if(gimnastas.add(g)) {
+			Gimnasta g2 = crearGimnasta();			
+				if(gimnastas.add(g2)) {
 					rg.guardaXML();
 				}else {
 					Utils.mensaje("No se pudo editar a la gimnasta");

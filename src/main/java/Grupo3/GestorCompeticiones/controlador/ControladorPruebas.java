@@ -25,7 +25,7 @@ import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 public class ControladorPruebas implements iControladorPruebas {
 
 	private ControladorParticipacion controlarParticipacion;
-	List<Prueba> pruebas = new ArrayList();
+	List<Prueba> pruebas = new ArrayList<>();
 	private VistaPruebas vistapruebas;
 	private iControladorParticipacion controlarPart;
 
@@ -77,19 +77,20 @@ public class ControladorPruebas implements iControladorPruebas {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		
 		ArrayList<Competicion> competiciones = rc.getCompeticiones();
-		ArrayList<Prueba> pruebas=new ArrayList();
+		ArrayList<Prueba> pruebas=new ArrayList<>();
 		Prueba p= crearPrueba();
+		
 	if(	pruebas.add(p)) {
 	     rc.guardaXML();
 	     result=true;
 	}      
      return result;
 	}
-	
+	  
 	public void editarPrueba() {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		ArrayList<Competicion> competiciones= rc.getCompeticiones();
-		ArrayList<Prueba> prueba=new ArrayList();
+		ArrayList<Prueba> prueba=new ArrayList<>();
 		
 		TipoPrueba tipo1=Utils.validaTipoPrueba("Introduce el tipo de prueba a editar");
 		Categoria categoria1=Utils.validaCategoria("Introduce la categor�a a editar");
@@ -117,7 +118,7 @@ public class ControladorPruebas implements iControladorPruebas {
 		 boolean result=false;
 		 RepoCompeticion rc=RepoCompeticion.newInstance();
 		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
-		 ArrayList<Prueba> pruebas=new ArrayList(); 
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
 		 TipoPrueba prueba=Utils.validaTipoPrueba("Introduce el tipo de prueba");
 			Categoria categoria=Utils.validaCategoria("Introduce la categor�a");
 			Aparato aparato=Utils.validaAparato("Introduce el aparato");
@@ -138,7 +139,7 @@ public class ControladorPruebas implements iControladorPruebas {
 	 public void muestraPrueba() {
 		 RepoCompeticion rc=RepoCompeticion.newInstance();
 		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
-		 ArrayList<Prueba> pruebas=new ArrayList(); 
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
 		 
 		 Iterator<Prueba> it=pruebas.iterator();
 		 Prueba p=it.next();
@@ -162,10 +163,12 @@ public class ControladorPruebas implements iControladorPruebas {
 	public void buscarPrueba() {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		ArrayList<Competicion> competicion=rc.getCompeticiones();
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
+		
 		 TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba a buscar:");
 		    Categoria categoria = Utils.validaCategoria("Introduce la categor�a a buscar:");
 		    Aparato aparato = Utils.validaAparato("Introduce el aparato a buscar:");
-			 ArrayList<Prueba> pruebas=new ArrayList(); 
+			
 			 
 			 Iterator<Prueba> it=pruebas.iterator();
 			 Prueba p=it.next();

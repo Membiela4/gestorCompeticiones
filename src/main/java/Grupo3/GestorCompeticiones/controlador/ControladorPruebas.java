@@ -24,25 +24,16 @@ import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 
 public class ControladorPruebas implements iControladorPruebas {
 
-
-	private VistaPruebas vistapruebas;
-	
 	private ControladorParticipacion controlarParticipacion;
-=======
-	List<Prueba> pruebas = new ArrayList();
+	List<Prueba> pruebas = new ArrayList<>();
 	private VistaPruebas vistapruebas;
-	private iControladorParticipacion controlarParticipacion;
+	private iControladorParticipacion controlarPart;
 
 	private ControladorPrincipal controlarPrincipal;
 	private ControladorCompeticion controlarComp;
 
 	public void ejecutarMenuInsertarPrueba() {
 		int opcion;
-
-		do {	
-			vistapruebas.mostrarMenuPrueba();
-			opcion=Utils.leeEntero("Elige una opcion: ");	
-=======
 		do {
 			vistapruebas.mostrarMenuPrueba();
 			opcion = Utils.leeEntero("Elige una opcion: ");
@@ -82,62 +73,84 @@ public class ControladorPruebas implements iControladorPruebas {
 		}		
 	}	
 	public boolean insertarPrueba() {
+	boolean result=false;
 		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> pruebas = rc.getCompeticiones();
+		
+		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		ArrayList<Prueba> pruebas=new ArrayList<>();
 		Prueba p= crearPrueba();
-		pruebas.add(p);
 		
-		return pruebas.addAll((pruebas));
-		
-		
+	if(	pruebas.add(p)) {
+	     rc.guardaXML();
+	     result=true;
+	}      
+     return result;
 	}
-	
+	  
 	public void editarPrueba() {
-		
 		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> pruebas = rc.getCompeticiones();
+		ArrayList<Competicion> competiciones= rc.getCompeticiones();
+		ArrayList<Prueba> prueba=new ArrayList<>();
 		
 		TipoPrueba tipo1=Utils.validaTipoPrueba("Introduce el tipo de prueba a editar");
 		Categoria categoria1=Utils.validaCategoria("Introduce la categor�a a editar");
 		Aparato aparato1=Utils.validaAparato("Introduce el aparato a editar");
 	    
-		Iterator<Competicion> it = pruebas.iterator();
-		 Competicion p1 = it.next();
+		Iterator<Prueba> it=pruebas.iterator();
+		Prueba p=it.next();
 		
 		while(it.hasNext()) {
-			
-		
-		    if (prueba!=null) {
-		        prueba.setTipo(tipo1);
-		        prueba.setCategoria(categoria1);
-		        prueba.setAparato(aparato1);
-		        Utils.mensaje("Prueba actualizada correctamente");
+		    if ((p.getAparato()==aparato1)&&(p.getCategoria()==categoria1)&&(p.getTipo()==tipo1)) {
+		       pruebas.remove(p);
+		       
 		    } 
+		    Prueba p2=crearPrueba();
+		    if(pruebas.add(p2)) {
+		    	rc.guardaXML();
+		    	 Utils.mensaje("Prueba actualizada correctamente");
+		    }
 		    else {
 		        Utils.mensaje("No se encontr� la prueba");
 		    }
 		}
 	}
-	 public void eliminaPrueba() {
+	 public boolean eliminaPrueba() {
+		 boolean result=false;
+		 RepoCompeticion rc=RepoCompeticion.newInstance();
+		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
 		 TipoPrueba prueba=Utils.validaTipoPrueba("Introduce el tipo de prueba");
 			Categoria categoria=Utils.validaCategoria("Introduce la categor�a");
 			Aparato aparato=Utils.validaAparato("Introduce el aparato");
-		    Prueba p = repoPruebas.buscaPrueba( prueba,categoria,aparato);
-		        if ((p)) {
-		            Utils.mensaje("Prueba eliminada correctamente");
-		        } else {
-		            Utils.mensaje("No se pudo eliminar la prueba");
-		        }
-		 
+			
+			Iterator<Prueba> it=pruebas.iterator();
+			Prueba p=it.next();
+			while(it.hasNext()) {
+				if(pruebas.equals(p.getAparato())&& pruebas.equals(p.getCategoria())&& pruebas.equals(p.getTipo())) {
+					pruebas.remove(p);
+					result=true;
+					break;
+				}
+			}
+			rc.guardaXML();
+			return result; 
 	 }
+	 
 	 public void muestraPrueba() {
-		 for(Prueba p : pruebas) {
-			 System.out.println(p);
+		 RepoCompeticion rc=RepoCompeticion.newInstance();
+		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
+		 
+		 Iterator<Prueba> it=pruebas.iterator();
+		 Prueba p=it.next();
+		 
+		 while(it.hasNext()) {
+			 Utils.imprimeObjeto(p);
 		 }
 	 }
 	 
 	 public void ejecutarMenuInsertarParticipaciones() {
-		 controlarParticipacion.controlarMenuParticipaciones();
+		 controlarParticipacion.controlarMenuParticipaciones(0);
 	 }
 	public void volverMenuPrincipal() {
 		controlarPrincipal.controlarMenuPrincipal();
@@ -147,21 +160,27 @@ public class ControladorPruebas implements iControladorPruebas {
 		controlarComp.controlarMenuCompeticion(0);
 	}
 	
-	@Override
 	public void buscarPrueba() {
+		RepoCompeticion rc = RepoCompeticion.newInstance();
+		ArrayList<Competicion> competicion=rc.getCompeticiones();
+		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
+		
 		 TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba a buscar:");
 		    Categoria categoria = Utils.validaCategoria("Introduce la categor�a a buscar:");
 		    Aparato aparato = Utils.validaAparato("Introduce el aparato a buscar:");
-			for (Prueba p : pruebas) {
-				if((p.getCategoria()==categoria)&&(p.getAparato()==aparato)&&(p.getTipo()==tipo))
+			
+			 
+			 Iterator<Prueba> it=pruebas.iterator();
+			 Prueba p=it.next();
+			 while(it.hasNext()) {
+			if(p.getAparato().equals(pruebas)&&(p.getCategoria().equals(pruebas))&&(p.getTipo().equals(pruebas))){
 					Utils.imprimeObjeto(p);
 			}
 		        
 	}
-	
+	}
 	public Prueba crearPrueba() {
 		ArrayList<Participacion> participaciones = null;
-		
 		
 		TipoPrueba tipo=Utils.validaTipoPrueba("Elige tipo de prueba (INDIVIDUAL/GRUPO) ");
 		Categoria categoria=Utils.validaCategoria("Introduce la categoria (prebenjamin/benjamin/alevin/infantil/junior/senior");
@@ -174,122 +193,6 @@ public class ControladorPruebas implements iControladorPruebas {
 	}
 
 
-	public void controlarMenuInsertarPrueba(int opcion) {
-		switch (opcion) {
-		case 0:
-			volverMenuCompeticion();
-			break;
-		case 1:
-			insertarPrueba();
-			break;
-		case 2:
-			editarPrueba();
-			break;
-		case 3:
-			buscarPrueba();
-			break;
-		case 4:
-			eliminaPrueba();
-			break;
-		case 5:
-			muestraPrueba();
-			break;
-		case 6:
-			ejecutarMenuInsertarParticipaciones();
-			break;
-		case 7:
-			volverMenuPrincipal();
-			break;
-		default:
-			Utils.mensaje("Vuelve a introducir una opcion");
-			break;
-		}
-	}
-
-	public void insertarPrueba() {
-		RepoCompeticion rc=RepoCompeticion.newInstance();
-		ArrayList<Participacion>participantes=new ArrayList<>();
-		TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba");
-		Categoria categoria = Utils.validaCategoria("Introduce la categor�a");
-		Aparato aparato = Utils.validaAparato("Introduce el aparato");
-
-		Prueba prueba = new Prueba(tipo, categoria, aparato, participantes);
-		
-		if(pruebas.add(prueba)) {
-		Utils.mensaje("Prueba creada correctamente");
-	}
-		rc.guardaXML();
-	}
-
-	public void editarPrueba() {
-		RepoCompeticion rc=RepoCompeticion.newInstance();
-		TipoPrueba tipo1 = Utils.validaTipoPrueba("Introduce el tipo de prueba a editar");
-		Categoria categoria1 = Utils.validaCategoria("Introduce la categor�a a editar");
-		Aparato aparato1 = Utils.validaAparato("Introduce el aparato a editar");
-		
-		Iterator<Prueba> it=pruebas.iterator();
-		if (it.equals(tipo1)&& it.equals(categoria1)&& it.equals(aparato1)) {
-			Prueba prueba = null;
-			prueba.setTipo(tipo1);
-			prueba.setCategoria(categoria1);
-			prueba.setAparato(aparato1);
-			Utils.mensaje("Prueba actualizada correctamente");
-		} else {
-			Utils.mensaje("No se encontr� la prueba");
-		}
-	}
 	
-	public boolean eliminaPrueba() {
-		boolean result=false;
-		RepoCompeticion rc=RepoCompeticion.newInstance();
-		TipoPrueba prueba = Utils.validaTipoPrueba("Introduce el tipo de prueba");
-		Categoria categoria = Utils.validaCategoria("Introduce la categor�a");
-		Aparato aparato = Utils.validaAparato("Introduce el aparato");
-		Iterator<Prueba> it =pruebas.iterator();
-		Prueba p1=it.next();
-		while(it.hasNext()) {
-			if((p1.getCategoria() == categoria) && (p1.getAparato() == aparato) && (p1.getTipo() == tipo)) ) {
-				it.remove();
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public void muestraPrueba() {
-		RepoCompeticion rc=RepoCompeticion.newInstance();
-		Iterator<Prueba> it =pruebas.iterator();
-		while(it.hasNext()) {
-			Utils.imprimeObjeto(pruebas);
-		}
-		
-	}
-
-	public void ejecutarMenuInsertarParticipaciones() {
-		controlarParticipacion.ejecutarMenuInsertarParticipaciones();
-	}
-
-	public void volverMenuPrincipal() {
-		controlarPrincipal.controlarMenuPrincipal();
-	}
-
-	public void volverMenuCompeticion() {
-		controlarComp.controlarMenuCompeticion(0);
-	}
-
-	@Override
-	public void buscarPrueba() {
-		RepoCompeticion rc=RepoCompeticion.newInstance();
-		TipoPrueba prueba = Utils.validaTipoPrueba("Introduce el tipo de prueba");
-		Categoria categoria = Utils.validaCategoria("Introduce la categor�a");
-		Aparato aparato = Utils.validaAparato("Introduce el aparato");
-		Iterator<Prueba> it =pruebas.iterator();
-		Prueba p=it.next();
-		while(it.hasNext()) {
-			if ((p.getCategoria() == categoria) && (p.getAparato() == aparato) && (p.getTipo() == tipo)) {
-				Utils.imprimeObjeto(p);
-		}
-}
-	}
 
 }

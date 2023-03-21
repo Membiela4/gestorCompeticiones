@@ -7,13 +7,13 @@ public interface iControladorGimnasta {
 
 	void controlarMenuGimnasta();
 	
-	boolean insertarGimnasta();
+	void insertarGimnasta();
 
 	void buscarGimnasta();
 
 	void editarGimnasta();
 
-	boolean eliminarGimnasta();
+	void eliminarGimnasta();
 
 	void mostrarGimnastas();
 
@@ -21,5 +21,5 @@ public interface iControladorGimnasta {
 
 	void volverMenuPrincipal();
 
-	Gimnasta crearGimnasta(); 
+	
 }

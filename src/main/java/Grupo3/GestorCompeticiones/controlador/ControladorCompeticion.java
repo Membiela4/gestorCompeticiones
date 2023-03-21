@@ -22,22 +22,20 @@ import Grupo3.GestorCompeticiones.vista.VistaCompeticion;
 
 public class ControladorCompeticion implements iControladorCompeticion {
 	
+	ControladorPrincipal controladorPrincipal;
 	List<Competicion> competiciones = new ArrayList();
-    RepoCompeticion repoComp;
-    ControladorPruebas controladorPruebas = new ControladorPruebas();
-    ControladorPrincipal controladorPrincipal;
-    VistaCompeticion vistaCompeticion = new VistaCompeticion();
-    
+   
 	public void ejecutarMenuCompeticion() {
 		int opcion;
 		do {
+			VistaCompeticion vistaCompeticion = new VistaCompeticion();
 			vistaCompeticion.mostrarMenuCompeticion();
 			opcion=Utils.leeEntero("Elige una opcion: ");
 			controlarMenuCompeticion(opcion);	
 		}while(opcion!=6);
 	}
 	
-	public void controlarMenuCompeticion(int opcion) {
+	public  void controlarMenuCompeticion(int opcion) {
 		switch(opcion) {
 		    case 0:
 		    		volverMenuPrincipal();
@@ -72,6 +70,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	/*
 	 * metodo que crea una competicion y la inserta en el xml, antes carga el xml y lo actualiza con la informacion actualizada
 	 */
+	
 	public void crearCompeticion() {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		ArrayList<Competicion> competiciones = rc.getCompeticiones();
@@ -198,10 +197,12 @@ public class ControladorCompeticion implements iControladorCompeticion {
 
 
 	public void ejecutarMenuInsertarPrueba() {
+		ControladorPruebas controladorPruebas = new ControladorPruebas();
 		controladorPruebas.controlarMenuInsertarPrueba(0);
 		}
 	
 	public void volverMenuPrincipal() {
+		
 		controladorPrincipal.controlarMenuPrincipal();
 	}
 	

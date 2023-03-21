@@ -15,7 +15,7 @@ public interface iControladorParticipacion {
 
 	void volverMenuPrincipal();
 	
-	boolean agregarParticipacion();
+	boolean agregarParticipacionGimnasta();
 	
 	boolean eliminarParticipacion();
 	
@@ -24,5 +24,7 @@ public interface iControladorParticipacion {
 	boolean editarParticipacion();
 	
 	void buscarParticipacion();
+	
+	
 
 }

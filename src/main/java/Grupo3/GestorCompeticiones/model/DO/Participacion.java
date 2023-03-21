@@ -95,7 +95,7 @@ public class Participacion<T> {
 		p.setDorsal(Utils.leeEntero("Introduce dorsal de la participacion"));
 		p.setHoraInicio(Utils.leeString("Introduce la hora de inicio de la participacion"));
 		p.setPuntos(Utils.leeEntero("Introduce puntuacion alcanzada"));
-//		Gimnasta g = ControladorGimnasta.crearGimnasta()
+		Gimnasta g = ControladorGimnasta.crearGimnasta()
 		p.setPartincipante(g);
 		
 		return p;

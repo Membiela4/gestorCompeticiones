@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<repoGimnasta>
-    <gimnastas>
-        <correo>ejemplo1@gmail.com</correo>
+<Gimnastas>
+    <Gimnasta>
+        <correo>sd@lkcknvf</correo>
         <dni>31032075S</dni>
-        <nombre>David</nombre>
-        <telefono>786745445</telefono>
-    </gimnastas>
-    <gimnastas>
-        <correo>ejemplo2@gmail.es</correo>
-        <dni>51213476C</dni>
-        <nombre>Rafa</nombre>
-        <telefono>875698435</telefono>
-    </gimnastas>
-</repoGimnasta>
+        <nombre>Jose lsui</nombre>
+        <telefono>684247205</telefono>
+    </Gimnasta>
+</Gimnastas>

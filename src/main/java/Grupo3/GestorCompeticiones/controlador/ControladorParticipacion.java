@@ -35,7 +35,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	public void controlarMenuParticipaciones(int opcion) {
 		switch (opcion) {
 		case 1:
-			agregarParticipacion();
+			agregarParticipacionGimnasta();
 			break;
 		case 2:
 			editarParticipacion();
@@ -73,19 +73,18 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	}
 
 	@Override
-	public boolean agregarParticipacion() {
+	public boolean agregarParticipacionGimnasta() {
 		
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		boolean result = false;
 
 		Participacion participacion = new Participacion(0, null, 0, null);
-		participacion.crearParticipacion();
+		Participacion p= participacion.crearParticipacionGimnasta();
 		
 		if(participaciones.add(participacion)) {
 			result=true;
 		}
 		
-
 		rc.guardaXML();
 		
 		
@@ -104,7 +103,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		
 		Competicion p = it.next();
 		while(it.hasNext()) {
-			if(p.getParticipantes()==dorsal) {
+			if(competiciones.contains(dorsal)) {
 				competiciones.remove(p);
 			}
 		}
@@ -125,7 +124,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		Iterator<Competicion> it = competiciones.iterator();
 		Competicion aux = it.next();
 		while(it.hasNext()) {
-			System.out.println(aux.getPruebas().getParticipantes());
+			System.out.println(aux.getPruebas());
 		}
 		
 	}
@@ -142,7 +141,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		
 		Competicion p = it.next();
 		while(it.hasNext()) {
-			if(p.getPruebas().getParticipantes()==dorsal) {
+			if(p.getPruebas().contains(dorsal)) {
 				competiciones.remove(p);
 			}
 			
@@ -169,7 +168,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		
 		Competicion p = it.next();
 		while(it.hasNext()) {
-			if(p.getPruebas().getParticipantes()==dorsal) {
+			if(p.getPruebas().contains(dorsal)) {
 				System.out.println(p);
 			}
 		}

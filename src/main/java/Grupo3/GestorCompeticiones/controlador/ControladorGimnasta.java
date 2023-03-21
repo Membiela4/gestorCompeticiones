@@ -118,7 +118,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
 		String gimnasta= Utils.leeString("Introduce el nombre de la Gimansta para editar: ");
 
-		
+	
 		Iterator<Gimnasta> it = gimnastas.iterator();
 		Gimnasta g = it.next();
 		

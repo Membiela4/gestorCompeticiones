@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Competiciones>
+    <Competicion>
+        <descripcion>prueba</descripcion>
+        <fechaInicio>2022-02-20T00:00:00+01:00</fechaInicio>
+        <nombre></nombre>
+    </Competicion>
+</Competiciones>

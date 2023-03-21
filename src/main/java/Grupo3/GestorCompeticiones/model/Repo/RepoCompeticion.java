@@ -20,24 +20,37 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement(name="Competiciones")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RepoCompeticion implements iRepoCompeticion,Serializable {
-	
+	@XmlTransient
 	private static final long serialVersionUID = 1L;
 	
-	@XmlElement(name="Competicion")
-	private ArrayList<Competicion> competiciones;
+	
 	@XmlTransient
 	private static RepoCompeticion _instance;  //no incluida en el XML
 	
-	private RepoCompeticion() {
+	@XmlElement(name="Competicion")
+	private ArrayList<Competicion> competiciones;
+	
+	private RepoCompeticion(boolean fake) {
 		RepoCompeticion rp = XMLmanager.readXML(new RepoCompeticion(), "Competicion.xml");
 		this.competiciones = rp.getCompeticiones();
 		if(this.competiciones==null) {
 			this.competiciones = new ArrayList<>();
 		}
+		if(rp!=null) {
+			this.competiciones = rp.getCompeticiones();
+		}
+		
+	
+		
 	}
+	
+	private RepoCompeticion() {
+		this.competiciones = new ArrayList<>();
+	}
+	
 	public static RepoCompeticion newInstance() {
 		if(_instance==null) {
-			_instance = new RepoCompeticion();
+			_instance = new RepoCompeticion(true);
 		}
 		return _instance;
 	}
@@ -51,9 +64,9 @@ public class RepoCompeticion implements iRepoCompeticion,Serializable {
 		this.competiciones = competiciones;
 	}
 	public boolean guardaXML() {
-		boolean result = false;
-		result = XMLmanager.writeXML(this, "Competicion.xml");
-		return result;	
+		
+		return XMLmanager.writeXML(this, "Competicion.xml");
+		
 	}
 	
 	

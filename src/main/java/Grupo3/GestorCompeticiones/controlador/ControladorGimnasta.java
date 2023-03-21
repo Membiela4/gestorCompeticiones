@@ -103,8 +103,16 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	//tocar metodo
 	public void editarGimnasta() {
 		RepoGimnasta rg = RepoGimnasta.newInstance();
+
 		ArrayList<Gimnasta> gims = rg.getGimnastas();
 		Iterator<Gimnasta> it = gims.iterator();
+
+		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
+		String gimnasta= Utils.leeString("Introduce el nombre de la Gimansta para editar: ");
+
+	
+		Iterator<Gimnasta> it = gimnastas.iterator();
+
 		Gimnasta g = it.next();
 		
 		String dni=Utils.validaDNI("Introduce el dni el gimnasta a buscar:");

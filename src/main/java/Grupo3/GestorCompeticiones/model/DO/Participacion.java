@@ -3,6 +3,7 @@ package Grupo3.GestorCompeticiones.model.DO;
 import java.util.Date;
 
 import Grupo3.GestorCompeticiones.controlador.ControladorGimnasta;
+import Grupo3.GestorCompeticiones.controlador.ControladorGrupo;
 import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class Participacion<T> {
@@ -87,17 +88,34 @@ public class Participacion<T> {
 	}
 	
 	
-	public Participacion crearParticipacion() {
+	public Participacion<T> crearParticipacionGimnasta() {
 		
 		Participacion p = new Participacion();
 		
 		p.setDorsal(Utils.leeEntero("Introduce dorsal de la participacion"));
 		p.setHoraInicio(Utils.leeString("Introduce la hora de inicio de la participacion"));
 		p.setPuntos(Utils.leeEntero("Introduce puntuacion alcanzada"));
-		p.setPartincipante(ControladorGimnasta.crearGimnasta());
+//		Gimnasta g = ControladorGimnasta.crearGimnasta()
+		p.setPartincipante(g);
 		
 		return p;
 		
 	}
+	
+	public Participacion crearParticipacionGrupo() {
+		
+		Participacion p = new Participacion();
+		
+		p.setDorsal(Utils.leeEntero("Introduce dorsal de la participacion"));
+		p.setHoraInicio(Utils.leeString("Introduce la hora de inicio de la participacion"));
+		p.setPuntos(Utils.leeEntero("Introduce puntuacion alcanzada"));
+		
+		
+		return p;
+		
+	}
+	
+	
+	
 	
 }

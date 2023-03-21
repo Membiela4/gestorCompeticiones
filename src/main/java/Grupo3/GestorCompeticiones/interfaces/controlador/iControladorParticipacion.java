@@ -17,12 +17,12 @@ public interface iControladorParticipacion {
 	
 	boolean agregarParticipacion();
 	
-	boolean eliminarParticipacion(int dorsal);
+	boolean eliminarParticipacion();
 	
 	void mostrarParticipaciones();
 	
-	boolean editarParticipacion(int dorsal);
+	boolean editarParticipacion();
 	
-	void buscarParticipacion(int dorsal);
+	void buscarParticipacion();
 
 }

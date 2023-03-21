@@ -10,7 +10,7 @@ public class Gimnasta extends Persona {
 	 * Constructores
 	 */
 
-	public Gimnasta(String nombre, String dni, String telefono, String correo) {
+	public Gimnasta(String nombre, String dni, String telefono, Categoria categoria, String correo) {
 		super(nombre, dni, telefono, correo);
 		
 	}
@@ -20,6 +20,7 @@ public class Gimnasta extends Persona {
 		this.categoria=null;
 		this.club=null;
 	}
+	
 
 	/*
 	 * Equals

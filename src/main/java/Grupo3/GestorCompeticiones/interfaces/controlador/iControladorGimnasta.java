@@ -15,9 +15,11 @@ public interface iControladorGimnasta {
 
 	void eliminarGimnasta();
 
-//	void mostrarGimnastas();
+	void mostrarGimnastas();
 
 	void ejecutarMenugrupos();
 
-	void volverMenuPrincipal(); 
+	void volverMenuPrincipal();
+
+	
 }

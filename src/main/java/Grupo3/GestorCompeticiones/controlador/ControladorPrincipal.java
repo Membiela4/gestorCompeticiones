@@ -10,13 +10,10 @@ import Grupo3.GestorCompeticiones.vista.VistaPrincipal;
 
 public class ControladorPrincipal implements iControladorPrincipal{
 
-
-	ControladorGrupo controlaGrup;
-
-	ControladorCompeticion controladorCompeticion = new ControladorCompeticion();
-	ControladorGimnasta controladorGimnasta = new ControladorGimnasta();
-	VistaPrincipal vistaPrincipal = new VistaPrincipal();
-	
+	static ControladorGrupo controladorGrupo = new ControladorGrupo();
+	static ControladorGimnasta controladorGimnasta = new ControladorGimnasta();
+	static ControladorCompeticion controladorCompeticion = new ControladorCompeticion(); 
+	static VistaPrincipal vistaPrincipal = new VistaPrincipal();
 	
 	/**
 	 * Controla la ejecucion del programa
@@ -30,7 +27,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	/**
 	 * Controlador principal del programa
 	 */
-	public void controlarMenuPrincipal() {
+	public  void controlarMenuPrincipal() {
 		boolean valid = false;
 		do {
 			
@@ -58,7 +55,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 	/**
 	 * Controlador del menu federacion
 	 */
-	public void ejecutarMenuFederacion() {
+	public  void ejecutarMenuFederacion() {
 		boolean valid = true;
 		do {
 			vistaPrincipal.mostrarMenuFederacion();
@@ -72,7 +69,7 @@ public class ControladorPrincipal implements iControladorPrincipal{
 				controladorGimnasta.controlarMenuGimnasta();
 				break;
 			case 2:
-				controlaGrup.controlarMenuGrupos();
+				controladorGrupo.controlarMenuGrupos();
 				break;
 
 			default:

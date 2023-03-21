@@ -8,7 +8,7 @@ import Grupo3.GestorCompeticiones.model.Repo.RepoGimnasta;
 import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class GimnastaDAO {
-	public boolean creaGimnasta(Gimnasta g) {
+	public static boolean creaGimnasta(Gimnasta g) {
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 		ArrayList<Gimnasta> gims = rg.getGimnastas();
 		boolean valid = gims.add(g);
@@ -20,7 +20,7 @@ public class GimnastaDAO {
 		return valid;
 	}
 	
-	public boolean eliminaGimnasta (Gimnasta g) {
+	public static boolean eliminaGimnasta (Gimnasta g) {
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 		ArrayList<Gimnasta> gims = rg.getGimnastas();
 		boolean valid = gims.remove(g);
@@ -34,7 +34,7 @@ public class GimnastaDAO {
 	
 	
 	
-	public Gimnasta buscaGimnasta(String dni){
+	public static Gimnasta buscaGimnasta(String dni){
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 		ArrayList<Gimnasta> gims = rg.getGimnastas();
 		Iterator<Gimnasta> it = gims.iterator();
@@ -51,7 +51,7 @@ public class GimnastaDAO {
 		return result;
 	}
 	
-	public String mostrarGimnastas() {
+	public static String mostrarGimnastas() {
 		String result= " ";
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 		ArrayList<Gimnasta> gims = rg.getGimnastas();

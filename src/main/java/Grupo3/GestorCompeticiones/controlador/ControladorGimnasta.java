@@ -20,19 +20,16 @@ import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 
 public class ControladorGimnasta implements iControladorGimnasta{
 	
-	private VistaGimnasta vistaGim = new VistaGimnasta();
-	private ControladorPrincipal controlaPrin= new ControladorPrincipal();
-	private ControladorGrupo controlaGrup;
-	private GimnastaDAO gdao = new GimnastaDAO();
-
+	static Utils utils;
 	
 	/**
 	 * Controlador del menu Gimnasta
 	 */
-	public void controlarMenuGimnasta() {
+	public  void controlarMenuGimnasta() {
 		boolean valid = false; 
 		do {
-			vistaGim.mostrarMenuGimnasta();
+			VistaGimnasta vistaGimnasta = new VistaGimnasta();
+			vistaGimnasta.mostrarMenuGimnasta();
 			int option = Utils.leeEntero("Introduce la opcion deseada: ");
 			switch (option) {
 			case 0:
@@ -80,7 +77,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta");
 		
 		Gimnasta g = new Gimnasta(nombre, dni, telefono, categoria, correo);
-		if(gdao.creaGimnasta(g)) {
+		if(GimnastaDAO.creaGimnasta(g)) {
 			Utils.mensaje("Has insetado correctamente el gimnasta");
 		}
 	}
@@ -92,7 +89,9 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	//tocar metodo
 	public void buscarGimnasta() {
 		
-		Utils.imprimeObjeto(gdao.buscaGimnasta(Utils.validaDNI("Introduce el dni de el gimnasta a buscar: ")));
+		
+		
+		utils.imprimeObjeto(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni de el gimnasta a buscar: ")));
 	}
 		
 
@@ -111,7 +110,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		String gimnasta= Utils.leeString("Introduce el nombre de la Gimansta para editar: ");
 
 	
-		Iterator<Gimnasta> it = gimnastas.iterator();
+		Iterator<Gimnasta> it2 = gimnastas.iterator();
 
 		Gimnasta g = it.next();
 		
@@ -143,7 +142,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	//tocarlo 
 	public void eliminarGimnasta() {
-		if(gdao.eliminaGimnasta(gdao.buscaGimnasta(Utils.validaDNI("Introduce el dni del gimnasta a eliminar")))) {
+		if(GimnastaDAO.eliminaGimnasta(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni del gimnasta a eliminar")))) {
 			Utils.mensaje("el gimnasta se ha eliminadp correctamente");
 		}
 	}	/**
@@ -154,7 +153,10 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	
 	public void mostrarGimnastas() {
-		String gim = gdao.mostrarGimnastas();
+		
+		String gim = new String();
+				
+		gim = GimnastaDAO.mostrarGimnastas();
 		Utils.imprimeObjeto(gim);
 		
 		
@@ -165,14 +167,16 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que te envia al menu de grupos
 	 */
 	public void ejecutarMenugrupos() {
-		controlaGrup.controlarMenuGrupos();
+		ControladorGrupo controladorGrupo = new ControladorGrupo();
+		controladorGrupo.controlarMenuGrupos();
 		
 	}
 	/**
 	 * Subcontrolador que te envia al menu principal
 	 */
 	public void volverMenuPrincipal() {
-		controlaPrin.controlarMenuPrincipal();
+		ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
+		controladorPrincipal.controlarMenuPrincipal();
 		
 	}
 	

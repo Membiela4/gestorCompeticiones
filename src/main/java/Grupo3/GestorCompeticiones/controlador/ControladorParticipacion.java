@@ -104,7 +104,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		
 		Competicion p = it.next();
 		while(it.hasNext()) {
-			if(p.getPruebas().getParticipantes()==dorsal) {
+			if(p.getParticipantes()==dorsal) {
 				competiciones.remove(p);
 			}
 		}

@@ -7,7 +7,7 @@ import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class ControladorGrupo implements iControladorGrupo{
 	private iControladorPrincipal controlaPrin= new ControladorPrincipal();
-	private iRepoGrupo repoGrupo;
+	
 	@Override
 	public void controlarMenuGrupos() {
 		boolean valid = false;

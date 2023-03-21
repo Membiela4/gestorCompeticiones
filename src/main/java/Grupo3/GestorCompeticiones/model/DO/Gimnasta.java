@@ -1,7 +1,5 @@
 package Grupo3.GestorCompeticiones.model.DO;
 
-import java.util.List;
-
 public class Gimnasta extends Persona {
 	
 	private String dni=super.getDni();

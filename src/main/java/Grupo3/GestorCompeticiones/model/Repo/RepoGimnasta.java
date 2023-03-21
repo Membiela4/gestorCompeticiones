@@ -58,15 +58,13 @@ public void setGimnastas(ArrayList<Gimnasta> gimnastas) {
 public boolean guardaXML() {
 	boolean result = false;
 	
-	result = XMLmanager.writeXML(this, "Gimnastas.xml");
+	result = XMLmanager.writeXML(this, "gimnastas.xml");
 	return result;	
 }
 
 
 	
 	
-joselu_gimnastas
- main
 
 	
 

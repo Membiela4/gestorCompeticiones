@@ -65,7 +65,7 @@ public class RepoCompeticion implements iRepoCompeticion,Serializable {
 		this.competiciones.add(c);
 		//guarda en el archivo
 		
-		return result;
+		return guardaXML();
 	}
 
 	

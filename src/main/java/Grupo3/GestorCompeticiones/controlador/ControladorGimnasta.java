@@ -20,8 +20,8 @@ import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 public class ControladorGimnasta implements iControladorGimnasta{
 	
 	private VistaGimnasta vistaGim = new VistaGimnasta();
-	private iControladorPrincipal controlaPrin= new ControladorPrincipal();
-	private iControladorGrupo controlaGrup;
+	private ControladorPrincipal controlaPrin= new ControladorPrincipal();
+	private ControladorGrupo controlaGrup;
 
 	
 	/**
@@ -71,22 +71,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	//tocar metodo
 	
-	/*public void insertarGimnasta() {
-		String nombre = Utils.leeString("Inserte el nombre:" );
-		String dni = Utils.validaDNI("Inserte el DNI: ");
-		String telefono = Utils.validaTLF("Introduce el telefono: ");
-		String correo = Utils.leeString("Introduce el correo: ");
-		
-		
-		Gimnasta g = new Gimnasta(nombre, dni, telefono, correo);
-		
-		if(repoGimnasta.insertaGimnasta(g)) {
-			Utils.mensaje("Gimasta introducido correctamente");
-			repoGimnasta.GimnastaXML();
-		}
-		
-	}
-	*/
+
 	public boolean insertarGimnasta() {
 	
 		 RepoGimnasta rg = RepoGimnasta.newInstance();
@@ -120,12 +105,6 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		}
 		
 	}
-		
-	
-			
-		
-		
-		
 		
 	
 	/**

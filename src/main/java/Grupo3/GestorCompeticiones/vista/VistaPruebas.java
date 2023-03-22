@@ -28,6 +28,8 @@ public class VistaPruebas implements iVistaPruebas {
 		Utils.mensaje("[3] BORRAR PARTICIPACION");
 		Utils.mensaje("[4] MOSTRAR PARTICIPACIONES");
 		Utils.mensaje("[5] BUSCAR PARTICIPACION");
+		Utils.mensaje("[6] VOLVER AL MENU DE PRUEBAS");
+		Utils.mensaje("[7] VOLVER AL MENU PRINCIPAL");
 		  
 	}
 

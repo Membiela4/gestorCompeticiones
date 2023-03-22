@@ -6,7 +6,7 @@ public interface iControladorPruebas {
 	void controlarMenuInsertarPrueba(int opcion);
 
 
-	boolean insertarPrueba();
+	void insertarPrueba();
 
 	void editarPrueba();
 

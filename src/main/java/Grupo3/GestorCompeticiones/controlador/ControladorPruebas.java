@@ -75,9 +75,9 @@ public class ControladorPruebas implements iControladorPruebas {
 	 
 	public void insertarPrueba() {
 		String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras crear una prueba: ");
-		TipoPrueba tipo=Utils.validaTipoPrueba("Introduce el tipo:");
-		Categoria categoria=Utils.validaCategoria("Introduce la categoria: ");
-		Aparato aparato=Utils.validaAparato("Introduce el aparato: ");
+		TipoPrueba tipo=Utils.validaTipoPrueba("Elige tipo de prueba (INDIVIDUAL/GRUPO) ");
+		Categoria categoria=Utils.validaCategoria("Introduce la categoria (prebenjamin/benjamin/alevin/infantil/junior/senior");
+		Aparato aparato=Utils.validaAparato("Introduce modalidad de prueba ( MAZAS/ARO/CINTA/CUERDA/MLIBRES");
 		ArrayList<Participacion> participaciones = new ArrayList();
 		
 
@@ -96,9 +96,10 @@ public class ControladorPruebas implements iControladorPruebas {
 		 String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras editar una prueba: ");
 		 Prueba p = PruebaDAO.buscaPrueba(nombreComp, Utils.validaTipoPrueba("Introduce el tipo de la prueba a editar: "), Utils.validaCategoria("Introduce la categoria de la prueba a editar: "), Utils.validaAparato("Introduce el aparato de la prueba a editar: "));
 		 if(PruebaDAO.existePrueba(nombreComp, p)) {
-			 TipoPrueba tipo=Utils.validaTipoPrueba("Introduce el tipo a editar:");
-			 Categoria categoria=Utils.validaCategoria("Introduce la categoria a editar: ");
-			 Aparato aparato=Utils.validaAparato("Introduce el aparato a editar: ");
+			 TipoPrueba tipo=Utils.validaTipoPrueba("Elige tipo de prueba (INDIVIDUAL/GRUPO) ");
+			 Categoria categoria=Utils.validaCategoria("Introduce la categoria (prebenjamin/benjamin/alevin/infantil/junior/senior");
+			 Aparato aparato=Utils.validaAparato("Introduce modalidad de prueba ( MAZAS/ARO/CINTA/CUERDA/MLIBRES");
+
 			 
 			 p.setTipo(tipo);
 			 p.setAparato(aparato);

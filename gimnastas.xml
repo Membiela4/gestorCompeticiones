@@ -1,154 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Gimnastas>
+    
     <Gimnasta>
-        <correo>dscjknsdfkjn@fd</correo>
-        <dni>31032075S</dni>
-        <nombre>kjcsdjhbd</nombre>
-        <telefono>678456345</telefono>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>qqqqq</correo>
-        <dni>51213476C</dni>
-        <nombre>rafa</nombre>
-        <telefono>603496758</telefono>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>www</correo>
-        <dni>81356613R</dni>
-        <nombre>pedro</nombre>
-        <telefono>698732789</telefono>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>rrrr</correo>
+        <correo>ramon@gmail.com</correo>
         <dni>67289442K</dni>
         <nombre>ramon</nombre>
         <telefono>678123456</telefono>
         <categoria>infantil</categoria>
     </Gimnasta>
     <Gimnasta>
-        <correo>qqq</correo>
+        <correo>adri@gmail.com</correo>
         <dni>51213476C</dni>
-        <nombre>roberto</nombre>
+        <nombre>adrian</nombre>
         <telefono>603496758</telefono>
         <categoria>infantil</categoria>
     </Gimnasta>
-    <Gimnasta>
-        <correo>rrr</correo>
-        <dni>51213476C</dni>
-        <nombre>javi</nombre>
-        <telefono>678123456</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>rrr</correo>
-        <dni>51213476C</dni>
-        <nombre>qqq</nombre>
-        <telefono>603496758</telefono>
-        <categoria>infantil</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>eee</correo>
-        <dni>51213476C</dni>
-        <nombre>eee</nombre>
-        <telefono>603496758</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>qqq</correo>
-        <dni>51213476C</dni>
-        <nombre>www</nombre>
-        <telefono>603496758</telefono>
-        <categoria>infantil</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>ttt</correo>
-        <dni>67289442K</dni>
-        <nombre>	rrr</nombre>
-        <telefono>632345678</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>rrr</correo>
-        <dni>67289442K</dni>
-        <nombre>qqq</nombre>
-        <telefono>655555555</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>qqq</correo>
-        <dni>51213476C</dni>
-        <nombre>www</nombre>
-        <telefono>655555555</telefono>
-        <categoria>infantil</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>eee</correo>
-        <dni>51213476C</dni>
-        <nombre>tt</nombre>
-        <telefono>603496758</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>eee</correo>
-        <dni>51213476C</dni>
-        <nombre>51213476C</nombre>
-        <telefono>655555555</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>rrr</correo>
-        <dni>51213476C</dni>
-        <nombre>www</nombre>
-        <telefono>655555555</telefono>
-        <categoria>infantil</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>ttt</correo>
-        <dni>51213476C</dni>
-        <nombre>qq</nombre>
-        <telefono>644444444</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>qqq</correo>
-        <dni>51213476C</dni>
-        <nombre>qqq</nombre>
-        <telefono>644444444</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>eee</correo>
-        <dni>51213476C</dni>
-        <nombre>qq</nombre>
-        <telefono>644444444</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>e</correo>
-        <dni>51213476C</dni>
-        <nombre>ra</nombre>
-        <telefono>677777777</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>g</correo>
-        <dni>51213476C</dni>
-        <nombre>r</nombre>
-        <telefono>677777777</telefono>
-        <categoria>infantil</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>q</correo>
-        <dni>51213476C</dni>
-        <nombre>e</nombre>
-        <telefono>677777777</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
-    <Gimnasta>
-        <correo>e</correo>
-        <dni>67289442K</dni>
-        <nombre>ramon</nombre>
-        <telefono>699999999</telefono>
-        <categoria>alevin</categoria>
-    </Gimnasta>
+   
 </Gimnastas>

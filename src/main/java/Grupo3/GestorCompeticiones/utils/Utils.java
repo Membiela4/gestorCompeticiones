@@ -309,15 +309,16 @@ public class Utils {
 				}
 			}
 		}
-		public static void validarCorreo(String correo) {
+		public static String validarCorreo(String correo) {
 	        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
 	        Pattern pattern = Pattern.compile(regex);
 	        Matcher matcher = pattern.matcher(correo);
 	        if (matcher.matches()) {
-	            System.out.println("El correo electrónico es válido.");
+	           return correo;
 	        } else {
 	            System.out.println("El correo electrónico no es válido.");
 	        }
+			return correo;
 	    }
 
 }

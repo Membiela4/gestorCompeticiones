@@ -1,17 +1,15 @@
 package Grupo3.GestorCompeticiones.controlador;
 
-import java.io.File;
+
 import java.util.ArrayList;
 
 import java.util.Iterator;
 import java.util.List;
 
 
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorCompeticion;
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorParticipacion;
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
 
+import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
+import Grupo3.GestorCompeticiones.model.DAO.PruebaDAO;
 import Grupo3.GestorCompeticiones.model.DO.Aparato;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;
@@ -25,9 +23,9 @@ import Grupo3.GestorCompeticiones.vista.VistaPruebas;
 public class ControladorPruebas implements iControladorPruebas {
 
 	private ControladorParticipacion controlarParticipacion;
-	List<Prueba> pruebas = new ArrayList<>();
+	
 	private VistaPruebas vistapruebas = new VistaPruebas();
-	private ControladorParticipacion controlarPart;
+	
 
 	private ControladorPrincipal controlarPrincipal;
 	private ControladorCompeticion controlarComp = new ControladorCompeticion();
@@ -59,7 +57,7 @@ public class ControladorPruebas implements iControladorPruebas {
 					eliminaPrueba();
 					break;
 			case 5:
-					muestraPrueba();
+					muestraPruebas();
 					break;
 			case 6:
 					ejecutarMenuInsertarParticipaciones();
@@ -72,81 +70,73 @@ public class ControladorPruebas implements iControladorPruebas {
 				 break;
 		}		
 	}	
-	public boolean insertarPrueba() {
-	boolean result=false;
-		RepoCompeticion rc = RepoCompeticion.newInstance();
+	 
+	 
+	 
+	public void insertarPrueba() {
+		String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras crear una prueba: ");
+		TipoPrueba tipo=Utils.validaTipoPrueba("Introduce el tipo:");
+		Categoria categoria=Utils.validaCategoria("Introduce la categoria: ");
+		Aparato aparato=Utils.validaAparato("Introduce el aparato: ");
+		ArrayList<Participacion> participaciones = new ArrayList();
 		
-		ArrayList<Competicion> competiciones = rc.getCompeticiones();
-		ArrayList<Prueba> pruebas=new ArrayList<>();
-		Prueba p= crearPrueba();
-		
-	if(	pruebas.add(p)) {
-	     rc.guardaXML();
-	     result=true;
-	}      
-     return result;
-	}
-	  
-	public void editarPrueba() {
-		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones= rc.getCompeticiones();
-		ArrayList<Prueba> prueba=new ArrayList<>();
-		
-		TipoPrueba tipo1=Utils.validaTipoPrueba("Introduce el tipo de prueba a editar");
-		Categoria categoria1=Utils.validaCategoria("Introduce la categor�a a editar");
-		Aparato aparato1=Utils.validaAparato("Introduce el aparato a editar");
-	    
-		Iterator<Prueba> it=pruebas.iterator();
-		Prueba p=it.next();
-		
-		while(it.hasNext()) {
-		    if ((p.getAparato()==aparato1)&&(p.getCategoria()==categoria1)&&(p.getTipo()==tipo1)) {
-		       pruebas.remove(p);
-		       
-		    } 
-		    Prueba p2=crearPrueba();
-		    if(pruebas.add(p2)) {
-		    	rc.guardaXML();
-		    	 Utils.mensaje("Prueba actualizada correctamente");
-		    }
-		    else {
-		        Utils.mensaje("No se encontr� la prueba");
-		    }
+		Prueba p = new Prueba(tipo, categoria, aparato, participaciones);
+		if(PruebaDAO.creaPrueba(nombreComp, p)) {
+			Utils.mensaje("La prueba se a creado correctamente.");
 		}
+		
 	}
-	 public boolean eliminaPrueba() {
-		 boolean result=false;
-		 RepoCompeticion rc=RepoCompeticion.newInstance();
-		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
-		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
-		 TipoPrueba prueba=Utils.validaTipoPrueba("Introduce el tipo de prueba");
-			Categoria categoria=Utils.validaCategoria("Introduce la categor�a");
-			Aparato aparato=Utils.validaAparato("Introduce el aparato");
-			
-			Iterator<Prueba> it=pruebas.iterator();
-			Prueba p=it.next();
-			while(it.hasNext()) {
-				if(pruebas.equals(p.getAparato())&& pruebas.equals(p.getCategoria())&& pruebas.equals(p.getTipo())) {
-					pruebas.remove(p);
-					result=true;
-					break;
-				}
-			}
-			rc.guardaXML();
-			return result; 
+	
+	
+	
+	 public void editarPrueba() {
+		 RepoCompeticion rc = RepoCompeticion.newInstance();
+		 String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras editar una prueba: ");
+		 Prueba p = PruebaDAO.buscaPrueba(nombreComp, Utils.validaTipoPrueba("Introduce el tipo de la prueba a editar: "), Utils.validaCategoria("Introduce la categoria de la prueba a editar: "), Utils.validaAparato("Introduce el aparato de la prueba a editar: "));
+		 if(PruebaDAO.existePrueba(nombreComp, p)) {
+			 TipoPrueba tipo=Utils.validaTipoPrueba("Introduce el tipo a editar:");
+			 Categoria categoria=Utils.validaCategoria("Introduce la categoria a editar: ");
+			 Aparato aparato=Utils.validaAparato("Introduce el aparato a editar: ");
+			 
+			 p.setTipo(tipo);
+			 p.setAparato(aparato);
+			 p.setCategoria(categoria);
+			 
+			 rc.guardaXML();
+		 }
+		
 	 }
 	 
-	 public void muestraPrueba() {
-		 RepoCompeticion rc=RepoCompeticion.newInstance();
-		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
-		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
-		 
-		 for (Prueba p : pruebas) {
-			Utils.imprimeObjeto(p);
-		}
-		 
+	 
+	 
+	public void eliminaPrueba() {
 		
+		 String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras eliminar una prueba: ");
+		 if(PruebaDAO.eliminaPrueba(nombreComp, PruebaDAO.buscaPrueba(nombreComp, Utils.validaTipoPrueba("Introduce el tipo de la prueba a eliminar: "), Utils.validaCategoria("Introduce la categoria de la prueba a eliminar: "), Utils.validaAparato("Introduce el aparato de la prueba a eliminar: ")))) {
+			 Utils.mensaje("La prueba se a eliminado correctamente.");
+		 }
 	 }
+	 
+	
+	
+	
+	
+	 public void muestraPruebas() {
+		 String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras mostrar todas sus pruebas: ");
+		 String pruebas = new String();
+		 pruebas = PruebaDAO.mostrarPruebas(nombreComp);
+		 Utils.imprimeObjeto(pruebas);
+	}
+	 
+	 
+	 
+	public void buscarPrueba() {
+		String nombreComp = Utils.leeString("Introduce el nombre de la competicion a la cual quieras buscar una prueba: ");
+		Utils.imprimeObjeto(PruebaDAO.buscaPrueba(nombreComp, Utils.validaTipoPrueba("Introduce el tipo de la prueba a buscar: "), Utils.validaCategoria("Introduce la categoria de la prueba a buscar: "), Utils.validaAparato("Introduce el aparato de la prueba a buscar: ")));
+	}
+	 
+	
+	
 	 
 	 public void ejecutarMenuInsertarParticipaciones() {
 		 controlarParticipacion.controlarMenuParticipaciones(0);
@@ -159,38 +149,8 @@ public class ControladorPruebas implements iControladorPruebas {
 		controlarComp.controlarMenuCompeticion(0);
 	}
 	
-	public void buscarPrueba() {
-		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competicion=rc.getCompeticiones();
-		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
-		
-		 TipoPrueba tipo = Utils.validaTipoPrueba("Introduce el tipo de prueba a buscar:");
-		    Categoria categoria = Utils.validaCategoria("Introduce la categor�a a buscar:");
-		    Aparato aparato = Utils.validaAparato("Introduce el aparato a buscar:");
-			
-			 
-			 Iterator<Prueba> it=pruebas.iterator();
-			 Prueba p=it.next();
-			 while(it.hasNext()) {
-			if(p.getAparato().equals(pruebas)&&(p.getCategoria().equals(pruebas))&&(p.getTipo().equals(pruebas))){
-					Utils.imprimeObjeto(p);
-			}
-		        
-	}
-	}
-	public Prueba crearPrueba() {
-		
-		ArrayList<Participacion> participaciones = null;
-		
-		TipoPrueba tipo=Utils.validaTipoPrueba("Elige tipo de prueba (INDIVIDUAL/GRUPO) ");
-		Categoria categoria=Utils.validaCategoria("Introduce la categoria (prebenjamin/benjamin/alevin/infantil/junior/senior");
-		Aparato aparato=Utils.validaAparato("Introduce modalidad de prueba ( MAZAS/ARO/CINTA/CUERDA/MLIBRES");
-		
-		Prueba prueba = new Prueba(tipo,categoria, aparato, participaciones);
-		Utils.mensaje("Prueba creada correctamente");
-		
-		return prueba;
-	}
+	
+	
 
 
 	

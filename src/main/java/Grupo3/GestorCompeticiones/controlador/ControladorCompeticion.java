@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.crypto.spec.RC2ParameterSpec;
 
@@ -15,6 +16,7 @@ import Grupo3.GestorCompeticiones.interfaces.repo.iRepoCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaCompeticion;
 import Grupo3.GestorCompeticiones.model.DAO.CompeticionDAO;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;
+import Grupo3.GestorCompeticiones.model.DO.Participacion;
 import Grupo3.GestorCompeticiones.model.DO.Prueba;
 import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
 import Grupo3.GestorCompeticiones.utils.Utils;
@@ -25,7 +27,8 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	
 	ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
 	
-   
+   private static final Logger logger = Logger.getLogger(ControladorPrincipal.class.getName());
+	
 	public void ejecutarMenuCompeticion() {
 		int opcion;
 		do {
@@ -73,18 +76,25 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	 */
 	
 	public void crearCompeticion() {
+		
+		logger.info("Iniciando el metodo para crear una competicion");
 		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
 		String descripcion=Utils.leeString("Introduce una descripcion");
 		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
 		ArrayList<Prueba> pruebas = new ArrayList<>();
+		ArrayList<Participacion> participaciones = new ArrayList<>();
 		
-		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio, pruebas);
+		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio, pruebas, participaciones);
 		if(CompeticionDAO.creaCompeticion(competicion)){
-			Utils.mensaje("Competicion creada correctamente");
+			logger.info("Competicion creada correctamente");
+			
+		}else {
+			logger.severe("error al crear competicion");
 		}
 		
+		
 	}
-	
+		
 	
 	
 	
@@ -120,11 +130,12 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	}
 	
 	
-	
-	
 	public void eliminaCompeticion() {
+		
 		if(CompeticionDAO.eliminaCompeticion(CompeticionDAO.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion que desea eliminar: ")))) {
 			Utils.mensaje("La competicion se a eliminado correctamente.");
+		}else {
+			logger.severe("error al eliminar la competicion");
 		}
 		
 	}

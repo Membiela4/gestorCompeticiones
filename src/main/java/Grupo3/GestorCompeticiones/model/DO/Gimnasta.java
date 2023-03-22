@@ -12,6 +12,7 @@ public class Gimnasta extends Persona {
 
 	public Gimnasta(String nombre, String dni, String telefono, Categoria categoria, String correo) {
 		super(nombre, dni, telefono, correo);
+		this.categoria=categoria;
 		
 	}
 	
@@ -83,7 +84,7 @@ public class Gimnasta extends Persona {
 
 	@Override
 	public String toString() {
-		return "[GIMNASTA]"+"\nNombre: " +super.toString() + "\nCategoria = " + categoria + "\nClub = " + club+"\n";
+		return "[GIMNASTA]"+ super.toString() + "\nCategoria = " + categoria + "\nClub = " + club+"\n";
 	}
 	
 	

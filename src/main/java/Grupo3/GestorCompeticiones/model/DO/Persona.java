@@ -95,7 +95,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona \nNombre =  " + nombre + "\nDNI = " + dni + "\nTelefono = " + telefono + "\nCorreo = " + correo;
+		return "\nNombre =  " + nombre + "\nDNI = " + dni + "\nTelefono = " + telefono + "\nCorreo = " + correo;
 	}
 
 

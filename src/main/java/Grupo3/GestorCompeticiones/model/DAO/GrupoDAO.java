@@ -22,13 +22,13 @@ public class GrupoDAO {
 		return valid;
 	}
 	
-	public boolean eliminaGrupo(String dni, Grupo g) {
+	public static boolean eliminaGrupo(Grupo g) {
 		return true;
 	}
-	public Grupo buscaGrupo(String dni, String nombre ) {
+	public static  Grupo buscaGrupo(String nombre ) {
 		return null;
 	}
-	public String mostrarGrupos() {
+	public static String mostrarGrupos() {
 		return null;
 	}
 }

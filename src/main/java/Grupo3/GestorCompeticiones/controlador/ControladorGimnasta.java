@@ -106,11 +106,6 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		ArrayList<Gimnasta> gims = rg.getGimnastas();
 		Iterator<Gimnasta> it = gims.iterator();
 
-		ArrayList<Gimnasta> gimnastas = rg.getGimnastas();
-		String gimnasta= Utils.leeString("Introduce el nombre de la Gimansta para editar: ");
-
-	
-		Iterator<Gimnasta> it2 = gimnastas.iterator();
 
 		Gimnasta g = it.next();
 		
@@ -120,19 +115,14 @@ public class ControladorGimnasta implements iControladorGimnasta{
 				gims.remove(g);
 			}
 		}
-		Gimnasta g2 = null;
-		
-		
+	
 		
 		String nombre = Utils.leeString("Inserte el nombre:" );
 		String telefono = Utils.validaTLF("Introduce el telefono: ");
 		String correo = Utils.leeString("Introduce el correo: ");
 		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta");
-		g2.setDni(dni);
-		g2.setNombre(nombre);
-		g2.setTelefono(telefono);
-		g2.setCorreo(correo);
-		g2.setCategoria(categoria);
+		Gimnasta g2 = new Gimnasta(dni,nombre,telefono,categoria,correo);
+		
 		rg.guardaXML();
 	}
 	/**

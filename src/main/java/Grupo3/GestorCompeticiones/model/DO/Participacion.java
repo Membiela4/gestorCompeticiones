@@ -4,6 +4,7 @@ import java.util.Date;
 
 import Grupo3.GestorCompeticiones.controlador.ControladorGimnasta;
 import Grupo3.GestorCompeticiones.controlador.ControladorGrupo;
+import Grupo3.GestorCompeticiones.model.DAO.GimnastaDAO;
 import Grupo3.GestorCompeticiones.utils.Utils;
 
 public class Participacion<T> {
@@ -95,7 +96,7 @@ public class Participacion<T> {
 		p.setDorsal(Utils.leeEntero("Introduce dorsal de la participacion"));
 		p.setHoraInicio(Utils.leeString("Introduce la hora de inicio de la participacion"));
 		p.setPuntos(Utils.leeEntero("Introduce puntuacion alcanzada"));
-		Gimnasta g = ControladorGimnasta.crearGimnasta()
+		Gimnasta g = GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el DNI del gimnasta que deseas añadir"));
 		p.setPartincipante(g);
 		
 		return p;

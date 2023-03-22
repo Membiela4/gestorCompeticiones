@@ -26,11 +26,11 @@ public class ControladorPruebas implements iControladorPruebas {
 
 	private ControladorParticipacion controlarParticipacion;
 	List<Prueba> pruebas = new ArrayList<>();
-	private VistaPruebas vistapruebas;
-	private iControladorParticipacion controlarPart;
+	private VistaPruebas vistapruebas = new VistaPruebas();
+	private ControladorParticipacion controlarPart;
 
 	private ControladorPrincipal controlarPrincipal;
-	private ControladorCompeticion controlarComp;
+	private ControladorCompeticion controlarComp = new ControladorCompeticion();
 
 	public void ejecutarMenuInsertarPrueba() {
 		int opcion;
@@ -39,7 +39,7 @@ public class ControladorPruebas implements iControladorPruebas {
 			opcion = Utils.leeEntero("Elige una opcion: ");
 
 			controlarMenuInsertarPrueba(opcion);
-		} while (opcion != 7);
+		} while (opcion != 7 || opcion !=0);
 	}
 	 public void controlarMenuInsertarPrueba(int opcion) {
 		switch(opcion) {
@@ -141,12 +141,11 @@ public class ControladorPruebas implements iControladorPruebas {
 		 ArrayList<Competicion >competiciones=rc.getCompeticiones();
 		 ArrayList<Prueba> pruebas=new ArrayList<>(); 
 		 
-		 Iterator<Prueba> it=pruebas.iterator();
-		 Prueba p=it.next();
+		 for (Prueba p : pruebas) {
+			Utils.imprimeObjeto(p);
+		}
 		 
-		 while(it.hasNext()) {
-			 Utils.imprimeObjeto(p);
-		 }
+		
 	 }
 	 
 	 public void ejecutarMenuInsertarParticipaciones() {
@@ -180,6 +179,7 @@ public class ControladorPruebas implements iControladorPruebas {
 	}
 	}
 	public Prueba crearPrueba() {
+		
 		ArrayList<Participacion> participaciones = null;
 		
 		TipoPrueba tipo=Utils.validaTipoPrueba("Elige tipo de prueba (INDIVIDUAL/GRUPO) ");

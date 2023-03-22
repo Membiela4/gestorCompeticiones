@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -308,4 +309,15 @@ public class Utils {
 				}
 			}
 		}
+		public static void validarCorreo(String correo) {
+	        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+	        Pattern pattern = Pattern.compile(regex);
+	        Matcher matcher = pattern.matcher(correo);
+	        if (matcher.matches()) {
+	            System.out.println("El correo electrónico es válido.");
+	        } else {
+	            System.out.println("El correo electrónico no es válido.");
+	        }
+	    }
+
 }

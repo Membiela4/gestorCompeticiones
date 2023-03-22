@@ -80,11 +80,13 @@ public class ControladorPruebas implements iControladorPruebas {
 		Aparato aparato=Utils.validaAparato("Introduce modalidad de prueba ( MAZAS/ARO/CINTA/CUERDA/MLIBRES");
 		ArrayList<Participacion> participaciones = new ArrayList();
 		
+
 		Prueba p = new Prueba(tipo, categoria, aparato, participaciones);
 		if(PruebaDAO.creaPrueba(nombreComp, p)) {
 			Utils.mensaje("La prueba se a creado correctamente.");
 		}
-		
+
+	
 	}
 	
 	

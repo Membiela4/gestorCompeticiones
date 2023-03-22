@@ -2,25 +2,22 @@ package Grupo3.GestorCompeticiones.controlador;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
+
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGimnasta;
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGrupo;
-import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
-import Grupo3.GestorCompeticiones.interfaces.repo.iRepoGimnasta;
-import Grupo3.GestorCompeticiones.interfaces.vista.iVistaGimnasta;
+
 import Grupo3.GestorCompeticiones.model.DAO.GimnastaDAO;
 import Grupo3.GestorCompeticiones.model.DO.Categoria;
 import Grupo3.GestorCompeticiones.model.DO.Gimnasta;
-import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
+
 import Grupo3.GestorCompeticiones.model.Repo.RepoGimnasta;
-import Grupo3.GestorCompeticiones.utils.SerializadorManager;
+
 import Grupo3.GestorCompeticiones.utils.Utils;
 import Grupo3.GestorCompeticiones.vista.VistaGimnasta;
 
 public class ControladorGimnasta implements iControladorGimnasta{
 	
-	static Utils utils;
+	
 	
 	/**
 	 * Controlador del menu Gimnasta
@@ -74,7 +71,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		String dni = Utils.validaDNI("Inserte el DNI: ");
 		String telefono = Utils.validaTLF("Introduce el telefono: ");
 		String correo = Utils.leeString("Introduce el correo: ");
-		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta");
+		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta: ");
 		
 		Gimnasta g = new Gimnasta(nombre, dni, telefono, categoria, correo);
 		if(GimnastaDAO.creaGimnasta(g)) {
@@ -91,7 +88,7 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 		
 		
-		utils.imprimeObjeto(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni de el gimnasta a buscar: ")));
+		Utils.imprimeObjeto(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni de el gimnasta a buscar: ")));
 	}
 		
 
@@ -99,31 +96,26 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de controlar la edicion del gimnasta.
 	 */
 	
-	//tocar metodo
+	
 	public void editarGimnasta() {
 		RepoGimnasta rg = RepoGimnasta.newInstance();
 
-		ArrayList<Gimnasta> gims = rg.getGimnastas();
-		Iterator<Gimnasta> it = gims.iterator();
-
-
-		Gimnasta g = it.next();
 		
-		String dni=Utils.validaDNI("Introduce el dni el gimnasta a buscar:");
-		while(it.hasNext()) {
-			if(g.getDni().equals(dni)) {
-				gims.remove(g);
-			}
-		}
-	
+		
+		Gimnasta g = GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni el gimnasta que desea editar :"));;
+		
 		
 		String nombre = Utils.leeString("Inserte el nombre:" );
 		String telefono = Utils.validaTLF("Introduce el telefono: ");
 		String correo = Utils.leeString("Introduce el correo: ");
-		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta");
-		Gimnasta g2 = new Gimnasta(dni,nombre,telefono,categoria,correo);
+		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta: ");
 		
+		g.setNombre(nombre);
+		g.setTelefono(telefono);
+		g.setCorreo(correo);
+		g.setCategoria(categoria);
 		rg.guardaXML();
+		
 	}
 	/**
 	 * Subcontrolador que se encarga de controlar la eliminacion de gimnasta.
@@ -132,8 +124,8 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	
 	//tocarlo 
 	public void eliminarGimnasta() {
-		if(GimnastaDAO.eliminaGimnasta(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni del gimnasta a eliminar")))) {
-			Utils.mensaje("el gimnasta se ha eliminadp correctamente");
+		if(GimnastaDAO.eliminaGimnasta(GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni del gimnasta a eliminar: ")))) {
+			Utils.mensaje("el gimnasta se ha eliminado correctamente");
 		}
 	}	/**
 	 *Comento el metodo para que no de fallos mientras hago pruebas

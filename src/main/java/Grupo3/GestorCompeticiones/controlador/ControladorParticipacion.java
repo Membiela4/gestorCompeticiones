@@ -101,9 +101,9 @@ public class ControladorParticipacion implements iControladorParticipacion {
 	public boolean eliminarParticipacion() {
 		
 		RepoCompeticion rc =RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		ArrayList<Competicion> competiciones  = rc.getCompeticiones();
 		
-		
+		boolean result = false;
 		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas eliminar");
 		Iterator<Competicion> it = competiciones.iterator();
 		
@@ -111,14 +111,11 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		while(it.hasNext()) {
 			if(competiciones.contains(dorsal)) {
 				competiciones.remove(p);
+				result = true;
 			}
 		}
 		
-		
-		
-		
-		
-		return false;
+		return result;
 	}
 
 	@Override
@@ -130,7 +127,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		Iterator<Competicion> it = competiciones.iterator();
 		Competicion aux = it.next();
 		while(it.hasNext()) {
-			System.out.println(aux.getPruebas());
+			System.out.println(aux.getParticipaciones());
 		}
 		
 	}
@@ -140,22 +137,23 @@ public class ControladorParticipacion implements iControladorParticipacion {
 		RepoCompeticion rc =RepoCompeticion.newInstance();
 		ArrayList<Competicion> competiciones = rc.getCompeticiones();
 		boolean result = false;
-		
-		
-		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas eliminar");
 		Iterator<Competicion> it = competiciones.iterator();
 		
+		String comp = Utils.leeString("¿En que competicion se encuentra?");
 		Competicion p = it.next();
 		while(it.hasNext()) {
-			if(p.getPruebas().contains(dorsal)) {
+			if(p.getNombre().equals(comp)) {
+			
+			}
+		}
+		int dorsal=Utils.leeEntero("Introduce el dorsal de la participacion que deseas eliminar");
+		
+		
+		while(it.hasNext()) {
+			if(p.getParticipaciones().contains(dorsal)) {
 				competiciones.remove(p);
 			}
 			
-			Competicion c = controlarComp.insertarCompeticion();
-			
-			if(competiciones.add(c)) {
-				result=true;
-			}
 		}
 		rc.guardaXML();
 		

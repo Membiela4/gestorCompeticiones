@@ -77,6 +77,7 @@ public class ControladorPruebas implements iControladorPruebas {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
 		
 		ArrayList<Competicion> competiciones = rc.getCompeticiones();
+		
 		ArrayList<Prueba> pruebas=new ArrayList<>();
 		Prueba p= crearPrueba();
 		

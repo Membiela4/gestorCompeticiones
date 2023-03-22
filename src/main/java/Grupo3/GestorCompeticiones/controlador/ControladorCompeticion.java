@@ -13,6 +13,7 @@ import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPrincipal;
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorPruebas;
 import Grupo3.GestorCompeticiones.interfaces.repo.iRepoCompeticion;
 import Grupo3.GestorCompeticiones.interfaces.vista.iVistaCompeticion;
+import Grupo3.GestorCompeticiones.model.DAO.CompeticionDAO;
 import Grupo3.GestorCompeticiones.model.DO.Competicion;
 import Grupo3.GestorCompeticiones.model.DO.Prueba;
 import Grupo3.GestorCompeticiones.model.Repo.RepoCompeticion;
@@ -23,7 +24,7 @@ import Grupo3.GestorCompeticiones.vista.VistaCompeticion;
 public class ControladorCompeticion implements iControladorCompeticion {
 	
 	ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
-	List<Competicion> competiciones = new ArrayList();
+	
    
 	public void ejecutarMenuCompeticion() {
 		int opcion;
@@ -72,130 +73,66 @@ public class ControladorCompeticion implements iControladorCompeticion {
 	 */
 	
 	public void crearCompeticion() {
-		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rc.getCompeticiones();
-
 		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
 		String descripcion=Utils.leeString("Introduce una descripcion");
 		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
 		ArrayList<Prueba> pruebas = new ArrayList<>();
 		
-		
-		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio,pruebas);
-		if(competiciones.add(competicion)){
+		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio, pruebas);
+		if(CompeticionDAO.creaCompeticion(competicion)){
 			Utils.mensaje("Competicion creada correctamente");
-		}else {
-			Utils.mensaje("Error al introducir competicion");
 		}
-		rc.guardaXML();
+		
 	}
 	
 	
-	public Competicion insertarCompeticion() {
-		
-		String nombre=Utils.leeString("\nIntroduce el nombre de la competicion");
-		String descripcion=Utils.leeString("Introduce una descripcion");
-		Date fechaInicio=Utils.validaFecha("Introduce la fecha de la competicion DD/MM/YYYY");
-		ArrayList<Prueba> pruebas = new ArrayList<>();
-		Competicion competicion = new Competicion(nombre, descripcion, fechaInicio,pruebas);
-		
-		
-		return competicion;
-	}
+	
 	
 	
 	public void editarCompeticion() {
 		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones  = rc.getCompeticiones();
-		String nombre= Utils.leeString("Introduce el nombre de la competicion a editar");
 		
-		Iterator<Competicion> it = competiciones.iterator();
-		Competicion competicion =null;
 		
-		while(it.hasNext()) {
-			if(it.equals(nombre)) {
-				String nuevoNombre=Utils.leeString("Introduce el nuevo nombre de la competicion");
-				String nuevaDescripcion=Utils.leeString("Introduce una descripcion");
-				Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competicion");
-				
-				 competicion.setNombre(nuevoNombre);
-			     competicion.setDescripcion(nuevaDescripcion);
-			     competicion.setFechaInicio(nuevaFechaInicio);
-			        
-				break;
-			}
+		
+		
+		Competicion competicion =CompeticionDAO.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion a editar"));
+		if(CompeticionDAO.existe(competicion)) {
+			String nuevoNombre=Utils.leeString("Introduce el nuevo nombre de la competicion");
+			String nuevaDescripcion=Utils.leeString("Introduce una descripcion");
+			Date nuevaFechaInicio=Utils.validaFecha("Introduce la fecha de la competicion");
 			
-				if(competiciones.add(competicion)) {
-					rc.guardaXML();
-				}else {
-					Utils.mensaje("No se ha podido editar la competicion");
-				}
+			 competicion.setNombre(nuevoNombre);
+		     competicion.setDescripcion(nuevaDescripcion);
+		     competicion.setFechaInicio(nuevaFechaInicio);
+		     rc.guardaXML();
 		}
+		
+				
+				
+		
 	
 	}
 	    
 	public void buscarCompeticion() {
-		RepoCompeticion rp = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rp.getCompeticiones();
+		Utils.imprimeObjeto(CompeticionDAO.buscaCompeticion(Utils.leeString("Introduce el nombre de la Competicion a buscar: ")));
 		
-		String comp=Utils.leeString("Introduce el nombre de la competicion ");
-		
-		Iterator<Competicion> it = competiciones.iterator();
-		Competicion c = it.next();
-		while(it.hasNext()) {
-			if(c.getNombre().equals(comp)) {
-				Utils.imprimeCompeticion(c);
-				
-			}
-		}
 	
 	}
+	
+	
 	
 	
 	public void eliminaCompeticion() {
-		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rc.getCompeticiones();
-		String nombre = Utils.leeString("Introduce el nombre de la competicion que deseas eliminar");
-		
-		Iterator<Competicion> it = competiciones.iterator();
-		Competicion comp = it.next();
-		Competicion c = it.next();
-		while(it.hasNext()) {
-			if(comp.equals(c.getNombre())) {
-				competiciones.remove(c);
-				break;
-			}
+		if(CompeticionDAO.eliminaCompeticion(CompeticionDAO.buscaCompeticion(Utils.leeString("Introduce el nombre de la competicion que desea eliminar: ")))) {
+			Utils.mensaje("La competicion se a eliminado correctamente.");
 		}
-			rc.guardaXML();
-	}
-	
-	public void eliminaCompeticion(Competicion c) {
 		
-		RepoCompeticion rc = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rc.getCompeticiones();
-		
-		Iterator<Competicion> it = competiciones.iterator();
-		Competicion c2 = it.next();
-		while(it.hasNext()) {
-			if(c2.equals(c)) {
-				competiciones.remove(c);
-			}
-		}
-		rc.guardaXML();
 	}
 	public void muestraCompeticion() {
-		RepoCompeticion rp = RepoCompeticion.newInstance();
-		ArrayList<Competicion> competiciones = rp.getCompeticiones();
-		
-		Iterator<Competicion> it = competiciones.iterator();
-		Competicion c = it.next();
-		
-		while(it.hasNext()) {
-			Utils.imprimeCompeticion(c);
-		}
+		String competiciones = new String();
+		competiciones=CompeticionDAO.mostrarCompeticiones();
+		Utils.imprimeObjeto(competiciones);
 	}
-
-
 	public void ejecutarMenuInsertarPrueba() {
 		ControladorPruebas controladorPruebas = new ControladorPruebas();
 		controladorPruebas.ejecutarMenuInsertarPrueba();

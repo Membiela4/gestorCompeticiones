@@ -10,8 +10,17 @@ public class Competicion {
 	private String descripcion;
 	private Date fechaInicio;
 	private ArrayList<Prueba> pruebas;
+	private ArrayList<Participacion> participaciones;
 	
 	
+	
+	public ArrayList<Participacion> getParticipaciones() {
+		return participaciones;
+	}
+	
+	public void setParticipaciones(ArrayList<Participacion> participaciones) {
+		this.participaciones = participaciones;
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -41,14 +50,17 @@ public class Competicion {
 	
 	
 	
-	public Competicion(String nombre, String descripcion, Date fechaInicio, ArrayList<Prueba> pruebas) {
+	
+	
+	public Competicion(String nombre, String descripcion, Date fechaInicio, ArrayList<Prueba> pruebas, ArrayList<Participacion> participaciones) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.pruebas = pruebas;
+		this.participaciones = participaciones;
 	}
-	
+
 	public Competicion() {
 		super();
 	}

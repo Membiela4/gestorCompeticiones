@@ -29,7 +29,7 @@ public class ControladorParticipacion implements iControladorParticipacion {
 			vistapruebas.mostrarMenuParticipacion();
 			opcion = Utils.leeEntero("Elige opcion: ");
 			controlarMenuParticipaciones(opcion);
-		} while (opcion != 6);
+		} while (opcion != 0);
 	}
 
 	public void controlarMenuParticipaciones(int opcion) {
@@ -48,6 +48,12 @@ public class ControladorParticipacion implements iControladorParticipacion {
 			break;
 		case 5:
 			buscarParticipacion();
+			break;
+		case 6:
+			volverMenuPruebas();
+			break;
+		case 7:
+			volverMenuPrincipal();
 			break;
 
 		default:

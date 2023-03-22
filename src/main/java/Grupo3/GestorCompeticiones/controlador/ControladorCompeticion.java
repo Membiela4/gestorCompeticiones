@@ -22,7 +22,7 @@ import Grupo3.GestorCompeticiones.vista.VistaCompeticion;
 
 public class ControladorCompeticion implements iControladorCompeticion {
 	
-	ControladorPrincipal controladorPrincipal;
+	ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
 	List<Competicion> competiciones = new ArrayList();
    
 	public void ejecutarMenuCompeticion() {
@@ -32,7 +32,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 			vistaCompeticion.mostrarMenuCompeticion();
 			opcion=Utils.leeEntero("Elige una opcion: ");
 			controlarMenuCompeticion(opcion);	
-		}while(opcion!=6);
+		}while(opcion!=0);
 	}
 	
 	public  void controlarMenuCompeticion(int opcion) {
@@ -198,7 +198,7 @@ public class ControladorCompeticion implements iControladorCompeticion {
 
 	public void ejecutarMenuInsertarPrueba() {
 		ControladorPruebas controladorPruebas = new ControladorPruebas();
-		controladorPruebas.controlarMenuInsertarPrueba(0);
+		controladorPruebas.ejecutarMenuInsertarPrueba();
 		}
 	
 	public void volverMenuPrincipal() {

@@ -96,10 +96,11 @@ public class ControladorGimnasta implements iControladorGimnasta{
 	 * Subcontrolador que se encarga de controlar la edicion del gimnasta.
 	 */
 	
-	//tocar metodo
+	
 	public void editarGimnasta() {
 		RepoGimnasta rg = RepoGimnasta.newInstance();
-		//ArrayList<Gimnasta> gims = rg.getGimnastas();
+
+		
 		
 		Gimnasta g = GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni el gimnasta que desea editar :"));;
 		
@@ -114,33 +115,6 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		g.setCorreo(correo);
 		g.setCategoria(categoria);
 		rg.guardaXML();
-		/*Iterator<Gimnasta> it = gims.iterator();
-		Gimnasta g = it.next();
-		
-		String dni=Utils.validaDNI("Introduce el dni el gimnasta que desea editar :");
-		
-		while(it.hasNext()) {
-			System.out.println("ok");
-			if(g.getDni().equals(dni)) {
-				System.out.println("ok2");
-				if(gims.remove(g)) {
-					String nombre = Utils.leeString("Inserte el nombre:" );
-					String telefono = Utils.validaTLF("Introduce el telefono: ");
-					String correo = Utils.leeString("Introduce el correo: ");
-					Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta: ");
-					Gimnasta g2 = new Gimnasta(nombre, dni, telefono, categoria, correo);
-					GimnastaDAO.creaGimnasta(g2);
-					rg.guardaXML();
-				}
-				
-				
-			}
-			break;
-		}
-		
-		*/
-		
-		
 		
 	}
 	/**

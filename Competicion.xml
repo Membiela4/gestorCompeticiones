@@ -5,4 +5,9 @@
         <fechaInicio>2022-02-20T00:00:00+01:00</fechaInicio>
         <nombre></nombre>
     </Competicion>
+    <Competicion>
+        <descripcion>www</descripcion>
+        <fechaInicio>2024-04-22T00:00:00+02:00</fechaInicio>
+        <nombre>e</nombre>
+    </Competicion>
 </Competiciones>

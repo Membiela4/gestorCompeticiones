@@ -84,4 +84,16 @@ public class GimnastaDAO {
 		}
 		return result;
 	}
+	
+	public static boolean existeGimnasta(Gimnasta g) {
+		boolean valid = false;
+		RepoGimnasta rg = RepoGimnasta.newInstance();
+		ArrayList<Gimnasta> gims = rg.getGimnastas();
+		if(gims.contains(g)) {
+			valid = true;
+		}else {
+			Utils.mensaje("el gimnasta no existe.");
+		}
+		return valid;
+	}
 }

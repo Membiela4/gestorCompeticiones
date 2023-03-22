@@ -1,7 +1,6 @@
 package Grupo3.GestorCompeticiones.controlador;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 
 
 import Grupo3.GestorCompeticiones.interfaces.controlador.iControladorGimnasta;
@@ -103,18 +102,20 @@ public class ControladorGimnasta implements iControladorGimnasta{
 		
 		
 		Gimnasta g = GimnastaDAO.buscaGimnasta(Utils.validaDNI("Introduce el dni el gimnasta que desea editar :"));;
+		if(GimnastaDAO.existeGimnasta(g)) {
+			String nombre = Utils.leeString("Inserte el nombre:" );
+			String telefono = Utils.validaTLF("Introduce el telefono: ");
+			String correo = Utils.leeString("Introduce el correo: ");
+			Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta: ");
+			
+			g.setNombre(nombre);
+			g.setTelefono(telefono);
+			g.setCorreo(correo);
+			g.setCategoria(categoria);
+			rg.guardaXML();
+		}
 		
 		
-		String nombre = Utils.leeString("Inserte el nombre:" );
-		String telefono = Utils.validaTLF("Introduce el telefono: ");
-		String correo = Utils.leeString("Introduce el correo: ");
-		Categoria categoria = Utils.validaCategoria("Introduce la categoria de la gimnasta: ");
-		
-		g.setNombre(nombre);
-		g.setTelefono(telefono);
-		g.setCorreo(correo);
-		g.setCategoria(categoria);
-		rg.guardaXML();
 		
 	}
 	/**

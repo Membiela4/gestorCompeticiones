@@ -55,7 +55,7 @@ public class Prueba {
 	public void setParticipantes(ArrayList<Participacion> participantes) {
 		this.participantes = participantes;
 	}
-
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -78,6 +78,12 @@ public class Prueba {
 		if (tipo != other.tipo)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "[Prueba]"  + "\ntipo:"  + tipo + "\ncategoria: " + categoria + "\naparato: " + aparato;
+
 	}
 	
 	

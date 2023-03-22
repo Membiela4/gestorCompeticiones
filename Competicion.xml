@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Competiciones>
     <Competicion>
-        <descripcion>prueba</descripcion>
+        <descripcion>competicion de salto</descripcion>
         <fechaInicio>2022-02-20T00:00:00+01:00</fechaInicio>
-        <nombre></nombre>
+        <nombre>Salto Danza</nombre>
     </Competicion>
     <Competicion>
-        <descripcion>www</descripcion>
+        <descripcion>Competicion sobre hielo</descripcion>
         <fechaInicio>2024-04-22T00:00:00+02:00</fechaInicio>
-        <nombre>e</nombre>
+        <nombre>Danza Hielo</nombre>
     </Competicion>
-    <Competicion>
-        <descripcion>eee</descripcion>
-        <fechaInicio>2023-02-20T00:00:00+01:00</fechaInicio>
-        <nombre>qq</nombre>
-    </Competicion>
+    
 </Competiciones>
